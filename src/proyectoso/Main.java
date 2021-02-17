@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyectoso;
+
+import java.util.concurrent.Semaphore;
+
+/**
+ *
+ * @author leonp
+ */
+public class Main {
+    
+    public static volatile int contador_global;
+    /*la cantidad de botones que se estan generando */
+    public static volatile int cantidad_botones;
+    
+    public static void main(String[] args){ 
+       
+        Semaphore mutex = new Semaphore(1);
+        
+        Productor_botones boton = new Productor_botones(mutex);
+        boton.start();
+    }
+}
+
+/*
+    Requerimientos básicos para esamblar una nueva consola 
+5 botones, 2 pantallas(1 normal y 1 táctil), 2 joystick y 1 lector de tarjetas SD
+
+    Los productores
+Deben revisar si hay espacio en el almacén para la creación de un producto (Semáforo)
+
+    Productores de botones 
+Un productor puede hacer 2 botones por día
+Almacenamiento máx 45
+Máx productores 3 
+
+    Productores de pantalla
+1 día para una pantalla normal 
+2 días para una pantalla táctil 
+Se debe hacer una pantalla normal y una táctil consecutivamente
+Almecenamiento máx 40 
+Máx produtores 5 
+
+    Productores de joystick
+2 días para 1 joystick
+Almacenamiento máx 20
+Máx productores 4
+
+    Productores de tarjeta SD
+3 días para una tarjeta
+Almacenamiento máx 15 
+Máx produtores 4 
+
+    Ensambladores 
+1 día para producir una consola 
+Al terminar aumenta el contador de consolas 
+No hay un máx de almacenamiento para las consolas
+Máx ensambladores 5 
+
+    Jefe
+Registra el paso de los días con un contador 
+Una unidad en el contador equivale a 6 horas 
+El jefe no puede leer el contador si hay alguien leyendo el contador
+El jefe esta durmiendo el resto del tiempo (sleep)
+
+    Gerente 
+Se dirige al contador, para verificar los días restantes al lanzamiento de un lote
+Si el jefe esta modificando el contador debe esperar a que este termnie
+Cuando el contador de días llegue a 0 el gerente inicia el desplieque de la consola
+y reinicializa el contador para el siguiente lote
+
+    Valores inicales 
+1 productor de botones 
+1 productor de pantallas
+1 productor de joysticks
+1 productor de lectores SD
+1 ensamblador 
+
+    Requerimientos generales
+
+    Interfaz gráfica para el control de la simulación, se debe mostrar
+Cantidad de productores de cada tipo
+Cantidad de botones, pantallas (de cada tipo), joystiks y lectores SD disponibles en almacén
+Cantidad de ensambladores
+Cantidad de consolas listas 
+Cantidad de días restantes para despliegue global
+Estado del jefe
+Estado del gerente 
+Cualquier otro dato que se considere relevante
+    Permitir en timepo de ejecución 
+Contratar o despedir un produtor de cualquier tipo
+Contratar o despedir un ensamblador 
+    A través de un (json, csv, objeto o texto), se le debe poder indicar al programa 
+    los siguiente parámetros
+Tiempo, en segundos, que dura un día en el programa
+Cantidad de días entre despachos 
+Las capacidades máximas de almacenamiento de cada tipo
+Cantidad inical de productores de cada tipo
+Cantidad máx de productores de cada tipo
+Cantidad inicial de ensambladores
+Cantidad máxima de ensambladores
+*/
