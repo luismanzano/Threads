@@ -31,8 +31,8 @@ public class Productor_SD extends Thread {
             
             try {
                 if(almacen_SD > 0){
-                    this.semSD.acquire();
                     this.mutex.acquire();
+                    this.semSD.acquire();
                     SD ++;
                     almacen_SD --;
                     PanelControl.setEstadisticasSD(Integer.toString(SD), Integer.toString(almacen_SD));

@@ -21,9 +21,9 @@ public class Controlador {
     
         
     public void controlInicio(){
-        Semaphore mutex = new Semaphore(1);
-        Semaphore semBoton = new Semaphore(45);
-        Semaphore semEnsambladorBoton = new Semaphore(0);
+        Semaphore mutex = new Semaphore(1); // 1 - 1 = 0 
+        Semaphore semBoton = new Semaphore(45); // 45 - 2 = 43
+        Semaphore semEnsambladorBoton = new Semaphore(0); // 0 + 2 = 2
         Semaphore semPantallas = new Semaphore(40);
         Semaphore semEnsambladorPantallaNormal = new Semaphore(0);
         Semaphore semEnsambladorPantallaTactil = new Semaphore(0);

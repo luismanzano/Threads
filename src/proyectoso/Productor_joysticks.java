@@ -31,8 +31,8 @@ public class Productor_joysticks extends Thread{
         while(true){
             try {
                 if(almacen_joysticks > 0){
-                this.semJoysticks.acquire();
                 this.mutex.acquire();
+                this.semJoysticks.acquire();
                 almacen_joysticks --;
                 joysticks ++;
                 PanelControl.setEstadisticasJoysticks(Integer.toString(joysticks), Integer.toString(almacen_joysticks));

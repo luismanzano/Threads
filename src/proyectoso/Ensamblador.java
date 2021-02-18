@@ -11,9 +11,9 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Ensamblador extends Thread {
-    Semaphore mutex;
-    private int consolas_listas = 0;
-    private int ensambladores = 1;
+    Semaphore mutex, semEnsambladorBoton;
+    public static volatile int consolas_listas = 0;
+    public static volatile int ensambladores = 1;
 
     public Ensamblador(Semaphore mutex) {
     this.mutex = mutex;
@@ -24,7 +24,9 @@ public class Ensamblador extends Thread {
     public void run(){
         
         try {
-            
+            if(Productor_botones.botones > 2){
+                
+            }
             this.mutex.acquire();
             
             this.mutex.release();

@@ -35,9 +35,9 @@ public class Productor_botones extends Thread {
                 if(almacen_botones > 0){ // Si hay espacio en el almacen
                     
                     if(almacen_botones > 1){ // Si hay mas de 1 espacio en el almacen
+                        this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         this.semBoton.acquire();
                         this.semBoton.acquire();    
-                        this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton
                         this.semEnsamblarBoton.release();
@@ -53,8 +53,8 @@ public class Productor_botones extends Thread {
                     }
                     
                     PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
-                    Thread.sleep(1000); // Tiempo que debe esperar el hilo antes de poder volver a ejecutarse 
                 }
+                    Thread.sleep(1000); // Tiempo que debe esperar el hilo antes de poder volver a ejecutarse 
             
             } catch (InterruptedException e) {
                 System.out.println(e);
