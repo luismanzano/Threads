@@ -11,26 +11,39 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Productor_SD extends Thread {
-    Semaphore mutex;
+    Semaphore mutex, semSD, semEnsambladorSD;
     private int almacen_SD = 15;
     private int productores_SD = 1;
-
-    public Productor_SD(Semaphore mutex) {
+    private int SD = 0;
+    
+    public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD ) {
     this.mutex = mutex;
+    this.semSD = semSD;
+    this.semEnsambladorSD = semEnsambladorSD;
+    }
+
+    public Productor_SD() {
     }
     
     
-    
     public void run(){
-        
-        try {
+        while(true){
             
-            this.mutex.acquire();
-            
-            this.mutex.release();
-            
-        } catch (Exception e) {
-            System.out.println(e);
+            try {
+                if(almacen_SD > 0){
+                    this.semSD.acquire();
+                    this.mutex.acquire();
+                    SD ++;
+                    almacen_SD --;
+                    PanelControl.setEstadisticasSD(Integer.toString(SD), Integer.toString(almacen_SD));
+                    this.semEnsambladorSD.release();
+                    this.mutex.release();
+                    Thread.sleep(3000);
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
     
@@ -51,7 +64,12 @@ public class Productor_SD extends Thread {
     public void setProductores_SD(int productores_SD) {
         this.productores_SD = productores_SD;
     }
-    
-    
 
+    public int getSD() {
+        return SD;
+    }
+
+    public void setSD(int SD) {
+        this.SD = SD;
+    }
 }

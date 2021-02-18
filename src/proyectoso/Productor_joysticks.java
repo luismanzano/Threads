@@ -11,26 +11,38 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Productor_joysticks extends Thread{
-    Semaphore mutex;
+    Semaphore mutex, semJoysticks, semEnsambladorJoysticks;
     private int almacen_joysticks = 20;
     private int productores_joystickis = 1;
+    private int joysticks = 0;
 
-    public Productor_joysticks(Semaphore mutex) {
+    public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks) {
     this.mutex = mutex;
+    this.semJoysticks = semJoysticks;
+    this.semEnsambladorJoysticks = semEnsambladorJoysticks;
+    }
+
+    public Productor_joysticks() {
     }
     
     
     
     public void run(){
-        
-        try {
-            
-            this.mutex.acquire();
-            
-            this.mutex.release();
-            
-        } catch (Exception e) {
-            System.out.println(e);
+        while(true){
+            try {
+                if(almacen_joysticks > 0){
+                this.semJoysticks.acquire();
+                this.mutex.acquire();
+                almacen_joysticks --;
+                joysticks ++;
+                PanelControl.setEstadisticasJoysticks(Integer.toString(joysticks), Integer.toString(almacen_joysticks));
+                this.semEnsambladorJoysticks.release();
+                this.mutex.release();
+                Thread.sleep(2000);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
     
@@ -50,6 +62,14 @@ public class Productor_joysticks extends Thread{
 
     public void setProductores_joystickis(int productores_joystickis) {
         this.productores_joystickis = productores_joystickis;
+    }
+
+    public int getJoysticks() {
+        return joysticks;
+    }
+
+    public void setJoysticks(int joysticks) {
+        this.joysticks = joysticks;
     }
     
     

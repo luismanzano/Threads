@@ -21,6 +21,7 @@ public class Productor_pantallas extends Thread {
     this.mutex = mutex; 
     this.semPantalla = semPantalla;
     this.semEnsambladorPantallaNormal = semEnsambladorPantallaNormal;
+    this.semEnsambladorPantallaTactil = semEnsambladorPantallaTactil;
     }
 
     public Productor_pantallas() {
@@ -34,24 +35,25 @@ public class Productor_pantallas extends Thread {
                 //Pantalla normal
                 if(almacen_pantallas > 0){
                 this.semPantalla.acquire();
-                }
                 this.mutex.acquire();
                 almacen_pantallas --;
                 pantallas_normales ++;
                 PanelControl.setEstadisticaPantallaNormal(Integer.toString(pantallas_normales), Integer.toString(almacen_pantallas));
-
+                this.semEnsambladorPantallaNormal.release();
                 this.mutex.release();
                 Thread.sleep(1000);
+                }
                 //Pantalla tactil
                 if(almacen_pantallas > 0){
                 this.semPantalla.acquire();
-                }
                 this.mutex.acquire();
                 almacen_pantallas --;
                 pantallas_tactiles ++;
                 PanelControl.setEstadisticaPantallaTactil(Integer.toString(pantallas_tactiles), Integer.toString(almacen_pantallas));
+                this.semEnsambladorPantallaTactil.release();
                 this.mutex.release();
                 Thread.sleep(2000);
+                }
             } catch (Exception e) {
                 System.out.println(e);
             }

@@ -28,10 +28,18 @@ public class Controlador {
         Semaphore semPantallas = new Semaphore(40);
         Semaphore semEnsambladorPantallaNormal = new Semaphore(0);
         Semaphore semEnsambladorPantallaTactil = new Semaphore(0);
+        Semaphore semJoysticks = new Semaphore(20);
+        Semaphore semEnsambladorJoysticks = new Semaphore(0);
+        Semaphore semSD = new Semaphore(15);
+        Semaphore semEnsambladorSD = new Semaphore(0);
         Productor_botones boton = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
         Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
+        Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
+        Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
         boton.start();
         pantalla.start();
+        joystick.start();
+        sd.start();
     }
     
 }

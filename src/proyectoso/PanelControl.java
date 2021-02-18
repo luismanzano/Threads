@@ -14,20 +14,36 @@ import javax.swing.JLabel;
  * @author Leonardo Gonzalez
  */
 public class PanelControl extends javax.swing.JFrame {
-       
+    
+    /*
+    Imports necesarios para actualizar la informacion en la interfaz grafica
+    */
     Controlador control = new Controlador();
+    
     Productor_botones boton = new Productor_botones();
     
     private int cant_botones = boton.getBotones();
     private int almacen_botones = boton.getAlmacen_botones();
-    private int productores_boton = boton.getProductores_botones();
+    private int cant_productores_boton = boton.getProductores_botones();
     
     Productor_pantallas pantalla = new Productor_pantallas();
     
     private int cant_pantallas_normales = pantalla.getPantallas_normales();
     private int cant_pantallas_tactiles = pantalla.getPantallas_tactiles();
+    private int cant_prouctores_pantallas = pantalla.getProductores_pantallas();
     private int almacen_pantallas = pantalla.getAlmacen_pantallas();
     
+    Productor_joysticks joysticks = new Productor_joysticks();
+    
+    private int cant_joysticks = joysticks.getJoysticks();
+    private int almacen_joysticks = joysticks.getAlmacen_joysticks();
+    private int cant_productores_joysticks = joysticks.getProductores_joystickis();
+    
+    Productor_SD SD = new Productor_SD();
+    
+    private int cant_sd = SD.getSD();
+    private int almacen_sd = SD.getAlmacen_SD();
+    private int cant_productores_sd = SD.getProductores_SD();
     /**
      * Creates new form PanelControl
      */
@@ -342,13 +358,22 @@ public class PanelControl extends javax.swing.JFrame {
     private void startProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProgramActionPerformed
                         // TODO add your handling code here:
             statusJefeText.setText("Durmiendo");
-            cantProductorBotones.setText(Integer.toBinaryString(productores_boton));
+            statusGerenteText.setText("Activo");
+            cantProductorBotones.setText(Integer.toBinaryString(cant_productores_boton));
             cantBotonesText.setText(Integer.toString(cant_botones));
             almacenBoton.setText(Integer.toString(almacen_botones));
+            cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));
+            cantProductorPTactil.setText(Integer.toString(cant_prouctores_pantallas));
             cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
             cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
             almacenPantalla.setText(Integer.toString(almacen_pantallas));
             almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
+            cantJoystickText.setText(Integer.toString(cant_joysticks));
+            cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
+            almacenJoystick.setText(Integer.toString(almacen_joysticks));
+            cantSDText.setText(Integer.toString(cant_sd));
+            cantProductorSD.setText(Integer.toString(cant_productores_sd));
+            almacenSD.setText(Integer.toString(almacen_sd));
             control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
 
@@ -364,7 +389,7 @@ public class PanelControl extends javax.swing.JFrame {
      /*la cantidad de botones que se estan generando */
 //    public static volatile int cantidad_botones = 0;
     
-    /* Metodos que actualiza los labels */
+    /* Metodos para actualizar los labels en la interfaz */
     
     public static void setEstadisticaBotones(String botones, String almacen){
         cantBotonesText.setText(botones);
@@ -383,10 +408,17 @@ public class PanelControl extends javax.swing.JFrame {
         almacenPantallaTactil.setText(almacen);
     }
     
+    public static void setEstadisticasJoysticks(String joysticks, String almacen){
+        cantJoystickText.setText(joysticks);
+        almacenJoystick.setText(almacen);
+    }
+    
+    public static void setEstadisticasSD(String SD, String almacen){
+        cantSDText.setText(SD);
+        almacenSD.setText(almacen);
+    }
+    
     public static void main(String args[]) {
-        
-        /*MOVI LOS ELEMENTOS DEL MAIN.JAVA PARA ACA*/
-         
          
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
