@@ -6,20 +6,34 @@
 package proyectoso;
 
 import java.util.concurrent.Semaphore;
+import javax.swing.JLabel;
 
 /**
  *
  * @author luismanzano
+ * @author Leonardo Gonzalez
  */
 public class PanelControl extends javax.swing.JFrame {
+       
+    Controlador control = new Controlador();
+    Productor_botones boton = new Productor_botones();
     
-   
-
+    private int cant_botones = boton.getBotones();
+    private int almacen_botones = boton.getAlmacen_botones();
+    private int productores_boton = boton.getProductores_botones();
+    
+    Productor_pantallas pantalla = new Productor_pantallas();
+    
+    private int cant_pantallas_normales = pantalla.getPantallas_normales();
+    private int cant_pantallas_tactiles = pantalla.getPantallas_tactiles();
+    private int almacen_pantallas = pantalla.getAlmacen_pantallas();
+    
     /**
      * Creates new form PanelControl
      */
     public PanelControl() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -62,6 +76,12 @@ public class PanelControl extends javax.swing.JFrame {
         statusGerenteText = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         diasLanzamientoText = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        almacenBoton = new javax.swing.JLabel();
+        almacenPantalla = new javax.swing.JLabel();
+        almacenPantallaTactil = new javax.swing.JLabel();
+        almacenJoystick = new javax.swing.JLabel();
+        almacenSD = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,62 +103,74 @@ public class PanelControl extends javax.swing.JFrame {
 
         jLabel2.setText("Botones");
 
-        jLabel3.setText("Pantallas");
+        jLabel3.setText("Pantalla normal");
 
-        jLabel4.setText("P. Tactil");
+        jLabel4.setText("Pantalla tactil");
 
         jLabel5.setText("Joystick");
 
         jLabel6.setText("Tarjeta SD");
 
-        jLabel7.setText("Cant Producida");
+        jLabel7.setText("Producidos");
 
         cantBotonesText.setText("0");
 
-        cantPantallasText.setText("jLabel9");
+        cantPantallasText.setText("0");
 
-        cantPTactilText.setText("jLabel10");
+        cantPTactilText.setText("0");
 
-        cantJoystickText.setText("jLabel11");
+        cantJoystickText.setText("0");
 
-        cantSDText.setText("jLabel12");
+        cantSDText.setText("0");
 
-        jLabel8.setText("Cant Productor");
+        jLabel8.setText("Productores activos");
 
-        cantProductorBotones.setText("jLabel9");
+        cantProductorBotones.setText("0");
         cantProductorBotones.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 cantProductorBotonesPropertyChange(evt);
             }
         });
 
-        cantProductorPantalla.setText("jLabel9");
+        cantProductorPantalla.setText("0");
 
-        cantProductorPTactil.setText("jLabel10");
+        cantProductorPTactil.setText("0");
 
-        cantProductorJoystick.setText("jLabel11");
+        cantProductorJoystick.setText("0");
 
-        cantProductorSD.setText("jLabel12");
+        cantProductorSD.setText("0");
 
-        consolasTerminadasText.setText("jLabel9");
+        consolasTerminadasText.setText("0");
 
         jLabel9.setText("Consolas Terminadas:");
 
         jLabel10.setText("Cantidad Ensamblador");
 
-        cantEnsambladorText.setText("jLabel11");
+        cantEnsambladorText.setText("0");
 
         jLabel11.setText("Status Jefe");
 
-        statusJefeText.setText("jLabel12");
+        statusJefeText.setText("n/a");
 
         jLabel12.setText("Status Gerente:");
 
-        statusGerenteText.setText("jLabel13");
+        statusGerenteText.setText("n/a");
 
         jLabel13.setText("Dias para lanzamiento");
 
-        diasLanzamientoText.setText("jLabel14");
+        diasLanzamientoText.setText("0");
+
+        jLabel14.setText("Espacio en almacen");
+
+        almacenBoton.setText("0");
+
+        almacenPantalla.setText("0");
+
+        almacenPantallaTactil.setText("0");
+
+        almacenJoystick.setText("0");
+
+        almacenSD.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,39 +206,44 @@ public class PanelControl extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cantProductorBotones)
-                                        .addComponent(cantProductorPantalla))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cantProductorPantalla)
+                                    .addComponent(cantProductorBotones)
                                     .addComponent(cantProductorPTactil)
                                     .addComponent(cantProductorJoystick)
-                                    .addComponent(cantProductorSD))))
+                                    .addComponent(cantProductorSD))
+                                .addGap(49, 49, 49)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cantSDText)
-                                        .addGap(21, 21, 21))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cantJoystickText)
-                                            .addComponent(cantPTactilText)
-                                            .addComponent(cantPantallasText)
-                                            .addComponent(cantBotonesText))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel10))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cantEnsambladorText)
-                                            .addComponent(consolasTerminadasText)))))
+                                    .addComponent(cantBotonesText)
+                                    .addComponent(cantPantallasText)
+                                    .addComponent(cantPTactilText)
+                                    .addComponent(cantJoystickText)
+                                    .addComponent(cantSDText))
+                                .addGap(102, 102, 102)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(almacenSD)
+                                    .addComponent(almacenJoystick)
+                                    .addComponent(almacenPantallaTactil)
+                                    .addComponent(almacenPantalla)
+                                    .addComponent(almacenBoton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cantEnsambladorText)
+                                    .addComponent(consolasTerminadasText)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
@@ -218,7 +255,7 @@ public class PanelControl extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(statusGerenteText)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(292, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(182, 182, 182)
                 .addComponent(jLabel13)
@@ -245,35 +282,15 @@ public class PanelControl extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(diasLanzamientoText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cantBotonesText)
-                            .addComponent(cantProductorBotones))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cantPantallasText)
-                            .addComponent(cantProductorPantalla))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cantPTactilText)
-                            .addComponent(cantProductorPTactil))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cantJoystickText)
-                            .addComponent(cantProductorJoystick))
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(cantEnsambladorText))
@@ -281,11 +298,37 @@ public class PanelControl extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(consolasTerminadasText)
                             .addComponent(jLabel9))
-                        .addGap(34, 34, 34)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cantSDText)
-                    .addComponent(cantProductorSD))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cantSDText)
+                            .addComponent(cantProductorSD)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cantBotonesText)
+                            .addComponent(cantProductorBotones)
+                            .addComponent(almacenBoton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cantPantallasText)
+                            .addComponent(cantProductorPantalla)
+                            .addComponent(almacenPantalla))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(cantPTactilText)
+                            .addComponent(cantProductorPTactil)
+                            .addComponent(almacenPantallaTactil))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(cantJoystickText)
+                            .addComponent(cantProductorJoystick)
+                            .addComponent(almacenJoystick))
+                        .addGap(18, 18, 18)
+                        .addComponent(almacenSD)))
                 .addGap(75, 75, 75))
         );
 
@@ -298,7 +341,15 @@ public class PanelControl extends javax.swing.JFrame {
 
     private void startProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProgramActionPerformed
                         // TODO add your handling code here:
-            statusJefeText.setText("Hola");
+            statusJefeText.setText("Durmiendo");
+            cantProductorBotones.setText(Integer.toBinaryString(productores_boton));
+            cantBotonesText.setText(Integer.toString(cant_botones));
+            almacenBoton.setText(Integer.toString(almacen_botones));
+            cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
+            cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
+            almacenPantalla.setText(Integer.toString(almacen_pantallas));
+            almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
+            control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
 
     private void cantProductorBotonesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cantProductorBotonesPropertyChange
@@ -309,13 +360,27 @@ public class PanelControl extends javax.swing.JFrame {
      * @param args the command line arguments
      */
      /*ELEMENTOS DEL MAIN*/
-    public static volatile int contador_global = 0;
+//    public static volatile int contador_global = 0;
      /*la cantidad de botones que se estan generando */
-    public static volatile int cantidad_botones = 0;
+//    public static volatile int cantidad_botones = 0;
     
-    /*Metodo que actualiza los labels */
-    public static void setCantBotonesText(String text){
-        cantBotonesText.setText(text);
+    /* Metodos que actualiza los labels */
+    
+    public static void setEstadisticaBotones(String botones, String almacen){
+        cantBotonesText.setText(botones);
+        almacenBoton.setText(almacen);
+    }
+    
+    public static void setEstadisticaPantallaNormal(String pantalla_normal , String almacen){
+        cantPantallasText.setText(pantalla_normal);
+        almacenPantalla.setText(almacen);
+        almacenPantallaTactil.setText(almacen);
+    }
+    
+    public static void setEstadisticaPantallaTactil(String pantalla_tactil , String almacen){
+        cantPTactilText.setText(pantalla_tactil);
+        almacenPantalla.setText(almacen);
+        almacenPantallaTactil.setText(almacen);
     }
     
     public static void main(String args[]) {
@@ -353,43 +418,37 @@ public class PanelControl extends javax.swing.JFrame {
                 new PanelControl().setVisible(true);
             }
         });
-        
-        
-        Semaphore mutex = new Semaphore(1);
-        
-        /*inicializamos el productor y el thread qeu actualiza los labels*/
-        Refresher refresher = new Refresher(mutex);
-        Productor_botones boton = new Productor_botones(mutex);
-        boton.start();
-        refresher.start();
-        
-        
-    /**
-     *
-     */
     
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static volatile javax.swing.JLabel cantBotonesText;
-    private javax.swing.JLabel cantEnsambladorText;
-    private javax.swing.JLabel cantJoystickText;
-    private javax.swing.JLabel cantPTactilText;
-    private javax.swing.JLabel cantPantallasText;
-    private javax.swing.JLabel cantProductorBotones;
-    private javax.swing.JLabel cantProductorJoystick;
-    private javax.swing.JLabel cantProductorPTactil;
-    private javax.swing.JLabel cantProductorPantalla;
-    private javax.swing.JLabel cantProductorSD;
-    private javax.swing.JLabel cantSDText;
-    private javax.swing.JLabel consolasTerminadasText;
-    private javax.swing.JLabel diasLanzamientoText;
+    private static javax.swing.JLabel almacenBoton;
+    private static javax.swing.JLabel almacenJoystick;
+    private static javax.swing.JLabel almacenPantalla;
+    private static javax.swing.JLabel almacenPantallaTactil;
+    private static javax.swing.JLabel almacenSD;
+    private static javax.swing.JLabel cantBotonesText;
+    private static javax.swing.JLabel cantEnsambladorText;
+    private static javax.swing.JLabel cantJoystickText;
+    private static javax.swing.JLabel cantPTactilText;
+    private static javax.swing.JLabel cantPantallasText;
+    private static javax.swing.JLabel cantProductorBotones;
+    private static javax.swing.JLabel cantProductorJoystick;
+    private static javax.swing.JLabel cantProductorPTactil;
+    private static javax.swing.JLabel cantProductorPantalla;
+    private static javax.swing.JLabel cantProductorSD;
+    private static javax.swing.JLabel cantSDText;
+    private static javax.swing.JLabel consolasTerminadasText;
+    private static javax.swing.JLabel diasLanzamientoText;
     private javax.swing.JSpinner duracionDia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -400,7 +459,7 @@ public class PanelControl extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton startProgram;
-    private javax.swing.JLabel statusGerenteText;
-    private javax.swing.JLabel statusJefeText;
+    private static javax.swing.JLabel statusGerenteText;
+    private static javax.swing.JLabel statusJefeText;
     // End of variables declaration//GEN-END:variables
 }

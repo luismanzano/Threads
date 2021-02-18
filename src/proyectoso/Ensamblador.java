@@ -21,7 +21,7 @@ public class Ensamblador extends Thread {
     
     
     
-    public void run_ensambladores(){
+    public void run(){
         
         try {
             

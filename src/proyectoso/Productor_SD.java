@@ -21,7 +21,7 @@ public class Productor_SD extends Thread {
     
     
     
-    public void run_SD(){
+    public void run(){
         
         try {
             

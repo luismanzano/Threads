@@ -9,21 +9,31 @@ import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author leonp
+ * @author Leonardo Gonzalez 
+ * @author  Luis Manzano
  */
-public class Main {
+public class Controlador {
     
     public static volatile int contador_global;
-    /*la cantidad de botones que se estan generando */
     public static volatile int cantidad_botones;
-    
-    public static void main(String[] args){ 
-       
-        Semaphore mutex = new Semaphore(1);
-        
-        Productor_botones boton = new Productor_botones(mutex);
-        boton.start();
+
+    public Controlador() {
     }
+    
+        
+    public void controlInicio(){
+        Semaphore mutex = new Semaphore(1);
+        Semaphore semBoton = new Semaphore(45);
+        Semaphore semEnsambladorBoton = new Semaphore(0);
+        Semaphore semPantallas = new Semaphore(40);
+        Semaphore semEnsambladorPantallaNormal = new Semaphore(0);
+        Semaphore semEnsambladorPantallaTactil = new Semaphore(0);
+        Productor_botones boton = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
+        Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
+        boton.start();
+        pantalla.start();
+    }
+    
 }
 
 /*

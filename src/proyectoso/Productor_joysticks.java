@@ -21,7 +21,7 @@ public class Productor_joysticks extends Thread{
     
     
     
-    public void run_joysticks(){
+    public void run(){
         
         try {
             
