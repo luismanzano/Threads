@@ -12,9 +12,9 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_joysticks extends Thread{
     Semaphore mutex, semJoysticks, semEnsambladorJoysticks;
-    private int almacen_joysticks = 20;
-    private int productores_joystickis = 1;
-    private int joysticks = 0;
+    public static volatile int almacen_joysticks = 20;
+    public static volatile int productores_joystickis = 1;
+    public static volatile int joysticks = 0;
 
     public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks) {
     this.mutex = mutex;
@@ -46,32 +46,32 @@ public class Productor_joysticks extends Thread{
         }
     }
     
-    // Getters & Setters 
-
-    public int getAlmacen_joysticks() {
-        return almacen_joysticks;
-    }
-
-    public void setAlmacen_joysticks(int almacen_joysticks) {
-        this.almacen_joysticks = almacen_joysticks;
-    }
-
-    public int getProductores_joystickis() {
-        return productores_joystickis;
-    }
-
-    public void setProductores_joystickis(int productores_joystickis) {
-        this.productores_joystickis = productores_joystickis;
-    }
-
-    public int getJoysticks() {
-        return joysticks;
-    }
-
-    public void setJoysticks(int joysticks) {
-        this.joysticks = joysticks;
-    }
-    
+//     Getters & Setters 
+//
+//    public int getAlmacen_joysticks() {
+//        return almacen_joysticks;
+//    }
+//
+//    public void setAlmacen_joysticks(int almacen_joysticks) {
+//        this.almacen_joysticks = almacen_joysticks;
+//    }
+//
+//    public int getProductores_joystickis() {
+//        return productores_joystickis;
+//    }
+//
+//    public void setProductores_joystickis(int productores_joystickis) {
+//        this.productores_joystickis = productores_joystickis;
+//    }
+//
+//    public int getJoysticks() {
+//        return joysticks;
+//    }
+//
+//    public void setJoysticks(int joysticks) {
+//        this.joysticks = joysticks;
+//    }
+//    
     
 
 }

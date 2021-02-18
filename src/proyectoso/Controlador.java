@@ -15,8 +15,7 @@ import java.util.concurrent.Semaphore;
 public class Controlador {
     
     public static volatile int contador_global;
-    public static volatile int cantidad_botones;
-
+   
     public Controlador() {
     }
     
@@ -32,11 +31,13 @@ public class Controlador {
         Semaphore semEnsambladorJoysticks = new Semaphore(0);
         Semaphore semSD = new Semaphore(15);
         Semaphore semEnsambladorSD = new Semaphore(0);
-        Productor_botones boton = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
+        Productor_botones boton_1 = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
+        Productor_botones boton_2 = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
         Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
         Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
         Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
-        boton.start();
+        boton_1.start();
+        boton_2.start();
         pantalla.start();
         joystick.start();
         sd.start();

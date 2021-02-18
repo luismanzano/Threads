@@ -20,30 +20,30 @@ public class PanelControl extends javax.swing.JFrame {
     */
     Controlador control = new Controlador();
     
-    Productor_botones boton = new Productor_botones();
+//    Productor_botones boton = new Productor_botones();
     
-    private int cant_botones = boton.getBotones();
-    private int almacen_botones = boton.getAlmacen_botones();
-    private int cant_productores_boton = boton.getProductores_botones();
+    private int cant_botones = Productor_botones.botones;
+    private int almacen_botones = Productor_botones.almacen_botones;
+    private int cant_productores_boton = Productor_botones.productores_botones;
     
-    Productor_pantallas pantalla = new Productor_pantallas();
+//    Productor_pantallas pantalla = new Productor_pantallas();
     
-    private int cant_pantallas_normales = pantalla.getPantallas_normales();
-    private int cant_pantallas_tactiles = pantalla.getPantallas_tactiles();
-    private int cant_prouctores_pantallas = pantalla.getProductores_pantallas();
-    private int almacen_pantallas = pantalla.getAlmacen_pantallas();
+    private int cant_pantallas_normales = Productor_pantallas.pantallas_normales;
+    private int cant_pantallas_tactiles = Productor_pantallas.pantallas_tactiles;
+    private int cant_prouctores_pantallas = Productor_pantallas.productores_pantallas;
+    private int almacen_pantallas = Productor_pantallas.almacen_pantallas;
     
-    Productor_joysticks joysticks = new Productor_joysticks();
+//    Productor_joysticks joysticks = new Productor_joysticks();
     
-    private int cant_joysticks = joysticks.getJoysticks();
-    private int almacen_joysticks = joysticks.getAlmacen_joysticks();
-    private int cant_productores_joysticks = joysticks.getProductores_joystickis();
+    private int cant_joysticks = Productor_joysticks.joysticks;
+    private int almacen_joysticks = Productor_joysticks.almacen_joysticks;
+    private int cant_productores_joysticks = Productor_joysticks.productores_joystickis;
     
-    Productor_SD SD = new Productor_SD();
+//    Productor_SD SD = new Productor_SD();
     
-    private int cant_sd = SD.getSD();
-    private int almacen_sd = SD.getAlmacen_SD();
-    private int cant_productores_sd = SD.getProductores_SD();
+    private int cant_sd = Productor_SD.SD;
+    private int almacen_sd = Productor_SD.almacen_SD;
+    private int cant_productores_sd = Productor_SD.productores_SD;
     /**
      * Creates new form PanelControl
      */

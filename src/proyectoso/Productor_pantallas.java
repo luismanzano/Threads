@@ -12,10 +12,10 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_pantallas extends Thread {
     Semaphore mutex, semPantalla, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil;
-    private int almacen_pantallas = 40;
-    private int pantallas_normales = 0;
-    private int pantallas_tactiles = 0; 
-    private int productores_pantallas = 1;
+    public static volatile int almacen_pantallas = 40;
+    public static volatile int pantallas_normales = 0;
+    public static volatile int pantallas_tactiles = 0; 
+    public static volatile int productores_pantallas = 1;
 
     public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil) {
     this.mutex = mutex; 
@@ -60,37 +60,37 @@ public class Productor_pantallas extends Thread {
         }    
     }
     
-    // Getters & Setters
-
-    public int getAlmacen_pantallas() {
-        return almacen_pantallas;
-    }
-
-    public void setAlmacen_pantallas(int almacen_pantallas) {
-        this.almacen_pantallas = almacen_pantallas;
-    }
-
-    public int getProductores_pantallas() {
-        return productores_pantallas;
-    }
-
-    public void setProductores_pantallas(int productores_pantallas) {
-        this.productores_pantallas = productores_pantallas;
-    }
-
-    public int getPantallas_normales() {
-        return pantallas_normales;
-    }
-
-    public void setPantallas_normales(int pantallas_normales) {
-        this.pantallas_normales = pantallas_normales;
-    }
-
-    public int getPantallas_tactiles() {
-        return pantallas_tactiles;
-    }
-
-    public void setPantallas_tactiles(int pantallas_tactiles) {
-        this.pantallas_tactiles = pantallas_tactiles;
-    }
+//     Getters & Setters
+//
+//    public int getAlmacen_pantallas() {
+//        return almacen_pantallas;
+//    }
+//
+//    public void setAlmacen_pantallas(int almacen_pantallas) {
+//        this.almacen_pantallas = almacen_pantallas;
+//    }
+//
+//    public int getProductores_pantallas() {
+//        return productores_pantallas;
+//    }
+//
+//    public void setProductores_pantallas(int productores_pantallas) {
+//        this.productores_pantallas = productores_pantallas;
+//    }
+//
+//    public int getPantallas_normales() {
+//        return pantallas_normales;
+//    }
+//
+//    public void setPantallas_normales(int pantallas_normales) {
+//        this.pantallas_normales = pantallas_normales;
+//    }
+//
+//    public int getPantallas_tactiles() {
+//        return pantallas_tactiles;
+//    }
+//
+//    public void setPantallas_tactiles(int pantallas_tactiles) {
+//        this.pantallas_tactiles = pantallas_tactiles;
+//    }
 }

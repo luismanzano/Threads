@@ -12,9 +12,9 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_SD extends Thread {
     Semaphore mutex, semSD, semEnsambladorSD;
-    private int almacen_SD = 15;
-    private int productores_SD = 1;
-    private int SD = 0;
+    public static volatile int almacen_SD = 15;
+    public static volatile int productores_SD = 1;
+    public static volatile int SD = 0;
     
     public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD ) {
     this.mutex = mutex;
@@ -47,29 +47,29 @@ public class Productor_SD extends Thread {
         }
     }
     
-    // Getters & Setters 
-
-    public int getAlmacen_SD() {
-        return almacen_SD;
-    }
-
-    public void setAlmacen_SD(int almacen_SD) {
-        this.almacen_SD = almacen_SD;
-    }
-
-    public int getProductores_SD() {
-        return productores_SD;
-    }
-
-    public void setProductores_SD(int productores_SD) {
-        this.productores_SD = productores_SD;
-    }
-
-    public int getSD() {
-        return SD;
-    }
-
-    public void setSD(int SD) {
-        this.SD = SD;
-    }
+//     Getters & Setters 
+//
+//    public int getAlmacen_SD() {
+//        return almacen_SD;
+//    }
+//
+//    public void setAlmacen_SD(int almacen_SD) {
+//        this.almacen_SD = almacen_SD;
+//    }
+//
+//    public int getProductores_SD() {
+//        return productores_SD;
+//    }
+//
+//    public void setProductores_SD(int productores_SD) {
+//        this.productores_SD = productores_SD;
+//    }
+//
+//    public int getSD() {
+//        return SD;
+//    }
+//
+//    public void setSD(int SD) {
+//        this.SD = SD;
+//    }
 }
