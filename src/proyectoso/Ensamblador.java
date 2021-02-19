@@ -82,13 +82,14 @@ public class Ensamblador extends Thread {
                     }
                 
                 //AHORA LAS PANTALLAS TACTILES
-                this.semEnsambladorPantallaTactil.acquire();
-                if(Productor_pantallas.pantallas_tactiles < 1){ //AGARRAR PANTALLAS
+                this.semEnsambladorPantallaTactil.acquire();  //POR ALGUNA RAZON SE DESTRABA SI QUITO EL ACQUIRE
+                if(Productor_pantallas.pantallas_tactiles <1){ //AGARRAR PANTALLAS
                     System.out.println("esperando por la pantalla tactil");
                 //wait();
                     } else {
-                   consumirPantallaTactil();
                     System.out.println("Ya tengo la pantalla tactil");
+                   consumirPantallaTactil();
+                    
                    //this.semEnsambladorPantallaTactil.release();
                     }
                 
@@ -135,10 +136,12 @@ public class Ensamblador extends Thread {
     
     public static void consumirBotones(){ //El metodo que se encarga de sacar del almacen y hacer la vaina 
        tengo_botones = Productor_botones.consumir();
+        System.out.println("efectivamente estan los botones");
     }
     
     public void consumirPantallaNormal(){
         tengo_pantalla_normal = Productor_pantallas.consumirPantallaNormal();
+        System.out.println("efectivamente tengo las pantallas");
     }
     
     public void consumirPantallaTactil(){
