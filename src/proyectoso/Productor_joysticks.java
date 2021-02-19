@@ -48,6 +48,15 @@ public class Productor_joysticks extends Thread{
         }
     }
     
+    public static boolean consumir() {
+        almacen_joysticks += 2;
+        joysticks -= 2;
+        
+        PanelControl.setEstadisticasJoysticks(Integer.toString(joysticks), Integer.toString(almacen_joysticks));
+        
+        return true;
+    }
+    
 //     Getters & Setters 
 //
 //    public int getAlmacen_joysticks() {

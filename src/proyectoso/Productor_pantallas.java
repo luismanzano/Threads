@@ -63,6 +63,24 @@ public class Productor_pantallas extends Thread {
         }    
     }
     
+    public static boolean consumirPantallaTactil(){
+        almacen_pantallas += 1;
+        pantallas_tactiles -= 1;
+        
+        PanelControl.setEstadisticaPantallaTactil(Integer.toString(pantallas_tactiles), Integer.toString(almacen_pantallas));
+        
+        return true;
+    }
+    
+    public static boolean consumirPantallaNormal(){
+        almacen_pantallas += 1;
+        pantallas_normales -= 1;
+        
+        PanelControl.setEstadisticaPantallaNormal(Integer.toString(pantallas_normales), Integer.toString(almacen_pantallas));
+        
+        return true;
+    }
+    
 //     Getters & Setters
 //
 //    public int getAlmacen_pantallas() {

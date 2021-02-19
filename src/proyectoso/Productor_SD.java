@@ -49,6 +49,15 @@ public class Productor_SD extends Thread {
         }
     }
     
+    public static boolean consumir() {
+        almacen_SD += 1;
+        SD -= 1;
+        
+        PanelControl.setEstadisticasSD(Integer.toString(SD), Integer.toString(almacen_SD));
+        
+        return true;
+    }
+    
 //     Getters & Setters 
 //
 //    public int getAlmacen_SD() {

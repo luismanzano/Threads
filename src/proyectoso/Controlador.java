@@ -85,6 +85,10 @@ public class Controlador {
             SD[i].start();
                 
         }
+        
+        Ensamblador ensamblador = new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD);
+        ensamblador.start();
+        
     }
     
     

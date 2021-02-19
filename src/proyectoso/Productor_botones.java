@@ -40,13 +40,13 @@ public class Productor_botones extends Thread {
                         this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton
-                        System.out.println("CREANDO 2 BOTONES");
+                        System.out.println("CREANDO 2 BOTONES");    
                         this.semEnsamblarBoton.release();
                         this.semEnsamblarBoton.release();
                         this.mutex.release(); // Aumenta el valor del semáforo, suelta su prioridad para ejecutarse
                     }else{
                         this.semBoton.acquire();
-                        this.semEnsamblarBoton.release();
+                        this.mutex.acquire();
                         almacen_botones --;
                         botones++;
                         System.out.println("CREANDO 1 SOLO BOTON");
@@ -65,6 +65,15 @@ public class Productor_botones extends Thread {
         
         
            
+    }
+    
+    public static boolean consumir(){
+            botones -= 5;
+            almacen_botones += 5;
+            
+            PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
+            
+            return true;
     }
     
 //    Getters & Setters

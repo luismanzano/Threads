@@ -45,6 +45,10 @@ public class PanelControl extends javax.swing.JFrame {
     private int almacen_sd = Productor_SD.almacen_SD;
     private int cant_productores_sd = Productor_SD.productores_SD;
     
+    //CANTIDAD CONSOLAS TERMINADAS
+    
+    private int cant_consolas = Ensamblador.consolas_listas;
+    
     /**
      * Creates new form PanelControl
      */
@@ -371,6 +375,7 @@ public class PanelControl extends javax.swing.JFrame {
             almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
             cantJoystickText.setText(Integer.toString(cant_joysticks));
             cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
+            consolasTerminadasText.setText(Integer.toString(cant_consolas));
             almacenJoystick.setText(Integer.toString(almacen_joysticks));
             cantSDText.setText(Integer.toString(cant_sd));
             cantProductorSD.setText(Integer.toString(cant_productores_sd));
@@ -391,6 +396,10 @@ public class PanelControl extends javax.swing.JFrame {
 //    public static volatile int cantidad_botones = 0;
     
     /* Metodos para actualizar los labels en la interfaz */
+    public static void setEstadisticaConsolas(String consolas){
+        cantBotonesText.setText(consolas);
+    }
+  
     
     public static void setEstadisticaBotones(String botones, String almacen){
         cantBotonesText.setText(botones);
