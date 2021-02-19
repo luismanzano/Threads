@@ -122,7 +122,7 @@ public class Ensamblador extends Thread {
                 this.mutex.release();
                 Thread.sleep(1000);
             } else {
-                this.mutex.release();
+                //this.mutex.release();
             }
             }
             
