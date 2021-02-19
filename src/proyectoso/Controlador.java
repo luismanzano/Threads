@@ -31,17 +31,62 @@ public class Controlador {
         Semaphore semEnsambladorJoysticks = new Semaphore(0);
         Semaphore semSD = new Semaphore(15);
         Semaphore semEnsambladorSD = new Semaphore(0);
-        Productor_botones boton_1 = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
-        Productor_botones boton_2 = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
-        Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
-        Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
-        Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
-        boton_1.start();
-        boton_2.start();
-        pantalla.start();
-        joystick.start();
-        sd.start();
+//        Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
+//        Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
+//        Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
+//        pantalla.start();
+//        joystick.start();
+//        sd.start();
+        
+        Productor_botones b = new Productor_botones();
+        int max_botones = b.getMax_productores_botones();
+        Productor_botones boton [] = new Productor_botones[max_botones];
+                 
+         
+        for (int i = 0; i < Productor_botones.productores_botones; i++) {
+            
+            boton[i] = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
+            boton[i].start();
+            System.out.println("THREAD BOTON" + (i+1));    
+        }
+        
+        Productor_pantallas p = new Productor_pantallas();
+        int max_pantallas = p.getMax_productores_pantallas();
+        Productor_pantallas pantalla [] = new Productor_pantallas[max_pantallas];
+                 
+         
+        for (int i = 0; i < Productor_pantallas.productores_pantallas; i++) {
+            
+            pantalla[i] = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
+            pantalla[i].start();
+                
+        }
+        
+        Productor_joysticks j = new Productor_joysticks();
+        int max_joysticks = j.getMax_productores_joysticks();
+        Productor_joysticks joysticks [] = new Productor_joysticks[max_joysticks];
+
+
+        for (int i = 0; i < Productor_joysticks.productores_joysticks; i++) {
+
+            joysticks[i] = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
+            joysticks[i].start();
+
+        }
+        
+        Productor_SD s = new Productor_SD();
+        int max_SD = s.getMax_productores_SD();
+        Productor_SD SD [] = new Productor_SD[max_SD];
+                 
+         
+        for (int i = 0; i < Productor_SD.productores_SD; i++) {
+            
+            SD[i] = new Productor_SD(mutex, semSD, semEnsambladorSD);
+            SD[i].start();
+                
+        }
     }
+    
     
 }
 

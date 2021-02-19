@@ -13,8 +13,9 @@ import java.util.concurrent.Semaphore;
 public class Productor_joysticks extends Thread{
     Semaphore mutex, semJoysticks, semEnsambladorJoysticks;
     public static volatile int almacen_joysticks = 20;
-    public static volatile int productores_joystickis = 1;
+    public static volatile int productores_joysticks = 2;
     public static volatile int joysticks = 0;
+    private final int max_productores_joysticks = 4;
 
     public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks) {
     this.mutex = mutex;
@@ -31,15 +32,16 @@ public class Productor_joysticks extends Thread{
         while(true){
             try {
                 if(almacen_joysticks > 0){
-                this.mutex.acquire();
                 this.semJoysticks.acquire();
+                this.mutex.acquire();
                 almacen_joysticks --;
                 joysticks ++;
+                    System.out.println("JOYSTICK");
                 PanelControl.setEstadisticasJoysticks(Integer.toString(joysticks), Integer.toString(almacen_joysticks));
                 this.semEnsambladorJoysticks.release();
                 this.mutex.release();
-                Thread.sleep(2000);
                 }
+                Thread.sleep(2000);
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -72,6 +74,10 @@ public class Productor_joysticks extends Thread{
 //        this.joysticks = joysticks;
 //    }
 //    
+
+    public int getMax_productores_joysticks() {
+        return max_productores_joysticks;
+    }
     
 
 }

@@ -37,13 +37,14 @@ public class PanelControl extends javax.swing.JFrame {
     
     private int cant_joysticks = Productor_joysticks.joysticks;
     private int almacen_joysticks = Productor_joysticks.almacen_joysticks;
-    private int cant_productores_joysticks = Productor_joysticks.productores_joystickis;
+    private int cant_productores_joysticks = Productor_joysticks.productores_joysticks;
     
 //    Productor_SD SD = new Productor_SD();
     
     private int cant_sd = Productor_SD.SD;
     private int almacen_sd = Productor_SD.almacen_SD;
     private int cant_productores_sd = Productor_SD.productores_SD;
+    
     /**
      * Creates new form PanelControl
      */
@@ -203,7 +204,7 @@ public class PanelControl extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
                         .addComponent(startProgram)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(351, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +360,7 @@ public class PanelControl extends javax.swing.JFrame {
                         // TODO add your handling code here:
             statusJefeText.setText("Durmiendo");
             statusGerenteText.setText("Activo");
-            cantProductorBotones.setText(Integer.toBinaryString(cant_productores_boton));
+            cantProductorBotones.setText(Integer.toString(cant_productores_boton));
             cantBotonesText.setText(Integer.toString(cant_botones));
             almacenBoton.setText(Integer.toString(almacen_botones));
             cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));

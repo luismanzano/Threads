@@ -15,7 +15,8 @@ public class Productor_pantallas extends Thread {
     public static volatile int almacen_pantallas = 40;
     public static volatile int pantallas_normales = 0;
     public static volatile int pantallas_tactiles = 0; 
-    public static volatile int productores_pantallas = 1;
+    public static volatile int productores_pantallas = 3;
+    private final int max_productores_pantallas = 5;
 
     public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil) {
     this.mutex = mutex; 
@@ -34,26 +35,28 @@ public class Productor_pantallas extends Thread {
             try {
                 //Pantalla normal
                 if(almacen_pantallas > 0){
-                this.mutex.acquire();
                 this.semPantalla.acquire();
+                this.mutex.acquire();
                 almacen_pantallas --;
                 pantallas_normales ++;
+                    System.out.println("PANTALLA NORMAL");
                 PanelControl.setEstadisticaPantallaNormal(Integer.toString(pantallas_normales), Integer.toString(almacen_pantallas));
                 this.semEnsambladorPantallaNormal.release();
                 this.mutex.release();
-                Thread.sleep(1000);
                 }
+                Thread.sleep(1000);
                 //Pantalla tactil
                 if(almacen_pantallas > 0){
                 this.mutex.acquire();
                 this.semPantalla.acquire();
                 almacen_pantallas --;
                 pantallas_tactiles ++;
+                    System.out.println("PANTALLA TACTIL");
                 PanelControl.setEstadisticaPantallaTactil(Integer.toString(pantallas_tactiles), Integer.toString(almacen_pantallas));
                 this.semEnsambladorPantallaTactil.release();
                 this.mutex.release();
-                Thread.sleep(2000);
                 }
+                Thread.sleep(2000);
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -93,4 +96,9 @@ public class Productor_pantallas extends Thread {
 //    public void setPantallas_tactiles(int pantallas_tactiles) {
 //        this.pantallas_tactiles = pantallas_tactiles;
 //    }
+
+    public int getMax_productores_pantallas() {
+        return max_productores_pantallas;
+    }
+    
 }

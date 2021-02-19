@@ -14,8 +14,8 @@ public class Productor_botones extends Thread {
     Semaphore mutex, semBoton, semEnsamblarBoton;
     public static volatile int almacen_botones = 45; // Capacidad máx de almacenamiento
     public static volatile int botones = 0;
-    public static volatile int productores_botones = 1; // Valor inicial, se debe poder indicar de manera dinamica
-
+    public static volatile int productores_botones = 2; // Valor inicial, se debe poder indicar de manera dinamica
+    private final int max_productores_botones  = 3;
     
     public Productor_botones(Semaphore mutex, Semaphore semBoton, Semaphore semEnsamblador){ // Constructor
         this.mutex = mutex;
@@ -35,11 +35,12 @@ public class Productor_botones extends Thread {
                 if(almacen_botones > 0){ // Si hay espacio en el almacen
                     
                     if(almacen_botones > 1){ // Si hay mas de 1 espacio en el almacen
-                        this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         this.semBoton.acquire();
                         this.semBoton.acquire();    
+                        this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton
+                        System.out.println("CREANDO 2 BOTONES");
                         this.semEnsamblarBoton.release();
                         this.semEnsamblarBoton.release();
                         this.mutex.release(); // Aumenta el valor del semáforo, suelta su prioridad para ejecutarse
@@ -48,6 +49,7 @@ public class Productor_botones extends Thread {
                         this.semEnsamblarBoton.release();
                         almacen_botones --;
                         botones++;
+                        System.out.println("CREANDO 1 SOLO BOTON");
                         this.semEnsamblarBoton.release();
                         this.mutex.release();
                     }
@@ -90,4 +92,8 @@ public class Productor_botones extends Thread {
 //    public void setBotones(int botones) {
 //        this.botones = botones;
 //    }
+
+    public int getMax_productores_botones() {
+        return max_productores_botones;
+    }
 }

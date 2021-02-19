@@ -13,8 +13,9 @@ import java.util.concurrent.Semaphore;
 public class Productor_SD extends Thread {
     Semaphore mutex, semSD, semEnsambladorSD;
     public static volatile int almacen_SD = 15;
-    public static volatile int productores_SD = 1;
+    public static volatile int productores_SD = 2;
     public static volatile int SD = 0;
+    private final int max_productores_SD = 4;
     
     public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD ) {
     this.mutex = mutex;
@@ -31,15 +32,16 @@ public class Productor_SD extends Thread {
             
             try {
                 if(almacen_SD > 0){
-                    this.mutex.acquire();
                     this.semSD.acquire();
+                    this.mutex.acquire();
                     SD ++;
                     almacen_SD --;
+                    System.out.println("TARJETA SD");
                     PanelControl.setEstadisticasSD(Integer.toString(SD), Integer.toString(almacen_SD));
                     this.semEnsambladorSD.release();
                     this.mutex.release();
-                    Thread.sleep(3000);
                 }
+                    Thread.sleep(3000);
 
             } catch (Exception e) {
                 System.out.println(e);
@@ -72,4 +74,9 @@ public class Productor_SD extends Thread {
 //    public void setSD(int SD) {
 //        this.SD = SD;
 //    }
+
+    public int getMax_productores_SD() {
+        return max_productores_SD;
+    }
+    
 }
