@@ -13,6 +13,7 @@ import java.util.concurrent.Semaphore;
 public class Ensamblador extends Thread {
     //COLOCAMOS TODOS LOS SEMAFOROS
     Semaphore mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD;
+    Semaphore semBoton, semPantallas, semJoysticks, semSD;
     
     
     public static volatile int consolas_listas = 0;
@@ -36,13 +37,18 @@ public class Ensamblador extends Thread {
     
     
 
-    public Ensamblador(Semaphore mutex, Semaphore semEnsambladorBoton, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semEnsambladorJoysticks, Semaphore semEnsambladorSD) {
+    public Ensamblador(Semaphore mutex, Semaphore semEnsambladorBoton, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semEnsambladorJoysticks, Semaphore semEnsambladorSD,
+                       Semaphore semBoton, Semaphore semPantallas, Semaphore semJoysticks, Semaphore semSD) {
     this.mutex = mutex;
     this.semEnsambladorBoton = semEnsambladorBoton;
     this.semEnsambladorPantallaNormal = semEnsambladorPantallaNormal;
     this.semEnsambladorPantallaTactil = semEnsambladorPantallaTactil;
     this.semEnsambladorJoysticks = semEnsambladorJoysticks;
     this.semEnsambladorSD = semEnsambladorSD;
+    this.semBoton = semBoton;
+    this.semPantallas = semPantallas;
+    this.semJoysticks = semJoysticks;
+    this.semSD = semSD;
     }
     
     
@@ -54,17 +60,39 @@ public class Ensamblador extends Thread {
             while(true){
                 
                 //colocamos todos los semaforos
-                this.mutex.acquire();
-               
-                //
-                 this.semEnsambladorBoton.acquire();
+   
+                System.out.println("ENSAMBLADOR ACTIVEICHON");
+                
+                //EL BIG IF DE LEO
+                if(Productor_botones.botones >= 5 /*&& Productor_pantallas.pantallas_normales >= 1 && Productor_pantallas.pantallas_tactiles >=1 && Productor_SD.SD >= 1 && Productor_SD.SD < 1*/){
+                    System.out.println("EL BIG IF DE LEO");
+                     this.semEnsambladorBoton.acquire();
+                     this.semEnsambladorBoton.acquire();
+                     this.semEnsambladorBoton.acquire();
+                     this.semEnsambladorBoton.acquire();
+                     this.semEnsambladorBoton.acquire();
                 if(Productor_botones.botones <= 5){ //AGARRAR BOTONES
                 //wait(); 
                     System.out.println("esperando por que hayan mas de 5 botones");
                     
                     } else {
+                    mutex.acquire();
                     System.out.println("ya tengo los botones");
                    consumirBotones();
+                   
+                   try{
+                       semBoton.release();
+                   } catch(Exception e){
+                       System.out.println("Problema haciendo el acquire");
+                       System.out.println(e);
+                   }
+                   
+                    System.out.println("Se hizo el release de semboton");
+                   semBoton.release();
+                   semBoton.release();
+                   semBoton.release();
+                   semBoton.release();
+                   mutex.release();
                    //consumi botones
                    //this.semEnsambladorBoton.release();
                     }
@@ -76,8 +104,11 @@ public class Ensamblador extends Thread {
                     System.out.println("Esperando por las pantallas normales");
                     
                     } else {
+                    this.mutex.acquire();
                     System.out.println("ya tengo las pantallas normales");
-                   consumirPantallaNormal();
+                    consumirPantallaNormal();
+                    semPantallas.release();
+                    this.mutex.release();
                    //this.semEnsambladorPantallaNormal.release();
                     }
                 
@@ -87,9 +118,11 @@ public class Ensamblador extends Thread {
                     System.out.println("esperando por la pantalla tactil");
                 //wait();
                     } else {
+                    this.mutex.acquire();
                     System.out.println("Ya tengo la pantalla tactil");
-                   consumirPantallaTactil();
-                    
+                    consumirPantallaTactil();
+                    semPantallas.release();
+                    this.mutex.release();
                    //this.semEnsambladorPantallaTactil.release();
                     }
                 
@@ -99,17 +132,25 @@ public class Ensamblador extends Thread {
                 //wait();
                     System.out.println("Esperando por SD");
                     } else {
+                    this.mutex.acquire();
                     System.out.println("Ya tengo SD");
                    consumirSD();
+                   semSD.release();
+                   this.mutex.release();
                    //this.semEnsambladorSD.release();
                     }
                 
                 //AHORA JOYSTICKS
                 this.semEnsambladorJoysticks.acquire();
                 if(Productor_joysticks.joysticks < 2){ //AGARRAR JOYSTICKS
+                    System.out.println("Esperando por los Joysticks");
                // wait();
                     } else {
-                   consumirJoysticks();
+                    this.mutex.acquire();
+                   System.out.println("Ya tengo los joysticks");
+                    consumirJoysticks();
+                    this.semJoysticks.release();
+                    this.mutex.release();
                    //this.semEnsambladorJoysticks.release();
                     }
             
@@ -117,15 +158,22 @@ public class Ensamblador extends Thread {
             
             
             //CON ESTE CODIGO VERIFICAMOS SI TENEMOS TODOS LOS COMPONENTES PARA PRODUCIR UNA CONSOLA
+                    System.out.println("afuera de las consolas");
             if(this.tengo_botones && this.tengo_pantalla_tactil && this.tengo_pantalla_normal && this.tengo_SD && this.tengo_joysticks){
+                System.out.println("ensamblando las consolas");
                 this.consolas_listas += 1;
-                PanelControl.setEstadisticaConsolas(Integer.toString(consolas_listas));
-                this.mutex.release();
+                PanelControl.setEstadisticaConsolas(Integer.toString(this.consolas_listas));
+                System.out.println("Actualizado");
                 Thread.sleep(1000);
             } else {
-                //this.mutex.release();
+//                this.mutex.release();
+//                Thread.sleep(200);
             }
             }
+                }
+               
+                //FIN BIG IF DE LEO 
+                
             
             
         } catch (Exception e) {

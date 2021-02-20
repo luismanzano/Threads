@@ -37,6 +37,7 @@ public class Productor_botones extends Thread {
                     if(almacen_botones > 1){ // Si hay mas de 1 espacio en el almacen
                         this.semBoton.acquire();
                         this.semBoton.acquire();    
+                        //colocar el release aca
                         this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton

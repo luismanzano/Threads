@@ -86,7 +86,7 @@ public class Controlador {
                 
         }
         
-        Ensamblador ensamblador = new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD);
+        Ensamblador ensamblador = new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD);
         ensamblador.start();
         
     }

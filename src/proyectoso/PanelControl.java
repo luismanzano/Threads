@@ -397,7 +397,7 @@ public class PanelControl extends javax.swing.JFrame {
     
     /* Metodos para actualizar los labels en la interfaz */
     public static void setEstadisticaConsolas(String consolas){
-        cantBotonesText.setText(consolas);
+        consolasTerminadasText.setText(consolas);
     }
   
     
