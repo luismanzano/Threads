@@ -33,14 +33,15 @@ public class Productor_joysticks extends Thread{
             try {
                 if(almacen_joysticks > 0){
                 this.semJoysticks.acquire();
-                Thread.sleep(2000);
                 this.mutex.acquire();
                 almacen_joysticks --;
                 joysticks ++;
+                    System.out.println("JOYSTICK");
                 PanelControl.setEstadisticasJoysticks(Integer.toString(joysticks), Integer.toString(almacen_joysticks));
-                this.mutex.release();
                 this.semEnsambladorJoysticks.release();
+                this.mutex.release();
                 }
+                Thread.sleep(2000);
             } catch (Exception e) {
                 System.out.println(e);
             }

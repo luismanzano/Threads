@@ -45,8 +45,8 @@ public class PanelControl extends javax.swing.JFrame {
     private int almacen_sd = Productor_SD.almacen_SD;
     private int cant_productores_sd = Productor_SD.productores_SD;
     
+    //CANTIDAD CONSOLAS TERMINADAS
     
-    private int cant_Ensambladores = Ensamblador.ensambladores;
     private int cant_consolas = Ensamblador.consolas_listas;
     
     /**
@@ -380,8 +380,6 @@ public class PanelControl extends javax.swing.JFrame {
             cantSDText.setText(Integer.toString(cant_sd));
             cantProductorSD.setText(Integer.toString(cant_productores_sd));
             almacenSD.setText(Integer.toString(almacen_sd));
-            cantEnsambladorText.setText(Integer.toHexString(cant_Ensambladores));
-            consolasTerminadasText.setText(Integer.toHexString(cant_consolas));
             control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
 

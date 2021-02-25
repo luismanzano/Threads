@@ -35,26 +35,29 @@ public class Productor_botones extends Thread {
                 if(almacen_botones > 0){ // Si hay espacio en el almacen
                     
                     if(almacen_botones > 1){ // Si hay mas de 1 espacio en el almacen
-                        this.semBoton.acquire(2);    
-                        Thread.sleep(1000);
+                        this.semBoton.acquire();
+                        this.semBoton.acquire();    
+                        //colocar el release aca
                         this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton
-                        PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
+                        System.out.println("CREANDO 2 BOTONES");    
+                        this.semEnsamblarBoton.release();
+                        this.semEnsamblarBoton.release();
                         this.mutex.release(); // Aumenta el valor del semáforo, suelta su prioridad para ejecutarse
-                        this.semEnsamblarBoton.release(2);
                     }else{
                         this.semBoton.acquire();
-                        Thread.sleep(1000); // Tiempo que debe esperar el hilo antes de poder volver a ejecutarse 
                         this.mutex.acquire();
                         almacen_botones --;
                         botones++;
-                        PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
-                        this.mutex.release();
+                        System.out.println("CREANDO 1 SOLO BOTON");
                         this.semEnsamblarBoton.release();
+                        this.mutex.release();
                     }
                     
+                    PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
                 }
+                    Thread.sleep(1000); // Tiempo que debe esperar el hilo antes de poder volver a ejecutarse 
             
             } catch (InterruptedException e) {
                 System.out.println(e);
