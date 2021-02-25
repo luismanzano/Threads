@@ -20,6 +20,7 @@ public class PanelControl extends javax.swing.JFrame {
     */
     Controlador control = new Controlador();
     
+    
 //    Productor_botones boton = new Productor_botones();
     
     private int cant_botones = Productor_botones.botones;
@@ -104,6 +105,17 @@ public class PanelControl extends javax.swing.JFrame {
         almacenPantallaTactil = new javax.swing.JLabel();
         almacenJoystick = new javax.swing.JLabel();
         almacenSD = new javax.swing.JLabel();
+        stopProgram = new javax.swing.JButton();
+        menosP_botones = new javax.swing.JButton();
+        masP_botones = new javax.swing.JButton();
+        masP_pantallas = new javax.swing.JButton();
+        menosP_pantallas = new javax.swing.JButton();
+        masP_joysticks = new javax.swing.JButton();
+        menosP_joysticks = new javax.swing.JButton();
+        masP_SD = new javax.swing.JButton();
+        menosP_SD = new javax.swing.JButton();
+        masEnsambladores = new javax.swing.JButton();
+        menosEnsambladores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,66 +206,135 @@ public class PanelControl extends javax.swing.JFrame {
 
         almacenSD.setText("0");
 
+        stopProgram.setText("Detener");
+        stopProgram.setEnabled(false);
+        stopProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopProgramActionPerformed(evt);
+            }
+        });
+
+        menosP_botones.setText("-");
+        menosP_botones.setEnabled(false);
+        menosP_botones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosP_botonesActionPerformed(evt);
+            }
+        });
+
+        masP_botones.setText("+");
+        masP_botones.setEnabled(false);
+        masP_botones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masP_botonesActionPerformed(evt);
+            }
+        });
+
+        masP_pantallas.setText("+");
+        masP_pantallas.setEnabled(false);
+
+        menosP_pantallas.setText("-");
+        menosP_pantallas.setEnabled(false);
+
+        masP_joysticks.setText("+");
+        masP_joysticks.setEnabled(false);
+
+        menosP_joysticks.setText("-");
+        menosP_joysticks.setEnabled(false);
+
+        masP_SD.setText("+");
+        masP_SD.setEnabled(false);
+
+        menosP_SD.setText("-");
+        menosP_SD.setEnabled(false);
+
+        masEnsambladores.setText("+");
+        masEnsambladores.setEnabled(false);
+
+        menosEnsambladores.setText("-");
+        menosEnsambladores.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(startProgram)))
-                .addContainerGap(351, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cantProductorPantalla)
-                                    .addComponent(cantProductorBotones)
-                                    .addComponent(cantProductorPTactil)
-                                    .addComponent(cantProductorJoystick)
-                                    .addComponent(cantProductorSD))
-                                .addGap(49, 49, 49)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
+                                    .addComponent(menosP_botones, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(menosP_joysticks, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(menosP_SD, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addComponent(menosP_pantallas, javax.swing.GroupLayout.Alignment.TRAILING)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cantBotonesText)
-                                    .addComponent(cantPantallasText)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(masP_pantallas, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(masP_joysticks, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(masP_SD, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(masP_botones)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(cantProductorSD)
+                                            .addComponent(cantProductorJoystick)
+                                            .addComponent(cantProductorPantalla)
+                                            .addComponent(cantProductorPTactil)
+                                            .addComponent(cantProductorBotones))
+                                        .addGap(49, 49, 49)))
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cantPTactilText)
                                     .addComponent(cantJoystickText)
-                                    .addComponent(cantSDText))
-                                .addGap(102, 102, 102)
+                                    .addComponent(cantSDText)
+                                    .addComponent(cantBotonesText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantPantallasText))
+                                .addGap(60, 60, 60))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(startProgram)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(almacenSD)
-                                    .addComponent(almacenJoystick)
-                                    .addComponent(almacenPantallaTactil)
-                                    .addComponent(almacenPantalla)
-                                    .addComponent(almacenBoton))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(diasLanzamientoText)
+                                            .addComponent(jLabel7)))
+                                    .addComponent(stopProgram, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(30, 30, 30)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(almacenSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(almacenJoystick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(almacenPantallaTactil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(almacenBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(almacenPantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel14))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
@@ -262,14 +343,13 @@ public class PanelControl extends javax.swing.JFrame {
                                     .addComponent(cantEnsambladorText)
                                     .addComponent(consolasTerminadasText)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel14)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(menosEnsambladores)
+                                .addGap(38, 38, 38)
+                                .addComponent(masEnsambladores)
+                                .addGap(11, 11, 11)))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(135, 135, 135)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
                         .addComponent(statusJefeText)
@@ -277,81 +357,106 @@ public class PanelControl extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(statusGerenteText)
-                        .addContainerGap(292, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
+                .addGap(333, 333, 333)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(diasLanzamientoText)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(startProgram)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(startProgram)
+                    .addComponent(stopProgram))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(statusJefeText)
                     .addComponent(jLabel12)
                     .addComponent(statusGerenteText))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(diasLanzamientoText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(cantEnsambladorText))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(consolasTerminadasText)
-                            .addComponent(jLabel9))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cantSDText)
-                            .addComponent(cantProductorSD)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel14))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(25, 25, 25))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(cantEnsambladorText))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(masEnsambladores)
+                                    .addComponent(menosEnsambladores))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cantProductorPTactil)
+                                .addComponent(jLabel4)
+                                .addComponent(cantPTactilText)
+                                .addComponent(almacenPantallaTactil))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cantProductorBotones)
+                                    .addComponent(masP_botones)
+                                    .addComponent(cantBotonesText)
+                                    .addComponent(almacenBoton)
+                                    .addComponent(menosP_botones))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cantProductorPantalla)
+                                    .addComponent(cantPantallasText)
+                                    .addComponent(almacenPantalla))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(menosP_pantallas)
+                                    .addComponent(masP_pantallas))
+                                .addGap(13, 13, 13)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cantBotonesText)
-                            .addComponent(cantProductorBotones)
-                            .addComponent(almacenBoton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cantPantallasText)
-                            .addComponent(cantProductorPantalla)
-                            .addComponent(almacenPantalla))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cantPTactilText)
-                            .addComponent(cantProductorPTactil)
-                            .addComponent(almacenPantallaTactil))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(cantJoystickText)
                             .addComponent(cantProductorJoystick)
-                            .addComponent(almacenJoystick))
-                        .addGap(18, 18, 18)
-                        .addComponent(almacenSD)))
-                .addGap(75, 75, 75))
+                            .addComponent(cantJoystickText)
+                            .addComponent(almacenJoystick)
+                            .addComponent(masP_joysticks)
+                            .addComponent(menosP_joysticks)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(consolasTerminadasText))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cantProductorSD)
+                    .addComponent(cantSDText)
+                    .addComponent(almacenSD)
+                    .addComponent(masP_SD)
+                    .addComponent(menosP_SD))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -363,32 +468,72 @@ public class PanelControl extends javax.swing.JFrame {
 
     private void startProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProgramActionPerformed
                         // TODO add your handling code here:
-            statusJefeText.setText("Durmiendo");
-            statusGerenteText.setText("Activo");
-            cantProductorBotones.setText(Integer.toString(cant_productores_boton));
-            cantBotonesText.setText(Integer.toString(cant_botones));
-            almacenBoton.setText(Integer.toString(almacen_botones));
-            cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));
-            cantProductorPTactil.setText(Integer.toString(cant_prouctores_pantallas));
-            cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
-            cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
-            almacenPantalla.setText(Integer.toString(almacen_pantallas));
-            almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
-            cantJoystickText.setText(Integer.toString(cant_joysticks));
-            cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
-            consolasTerminadasText.setText(Integer.toString(cant_consolas));
-            almacenJoystick.setText(Integer.toString(almacen_joysticks));
-            cantSDText.setText(Integer.toString(cant_sd));
-            cantProductorSD.setText(Integer.toString(cant_productores_sd));
-            almacenSD.setText(Integer.toString(almacen_sd));
-            cantEnsambladorText.setText(Integer.toHexString(cant_ensambladores));
-            consolasTerminadasText.setText(Integer.toString(cant_consolas));
-            control.controlInicio();
+                startProgram.setEnabled(false);
+                stopProgram.setEnabled(true);
+                
+                statusJefeText.setText("Durmiendo");
+                statusGerenteText.setText("Activo");
+                
+                cantProductorBotones.setText(Integer.toString(cant_productores_boton));
+                cantBotonesText.setText(Integer.toString(cant_botones));
+                almacenBoton.setText(Integer.toString(almacen_botones));
+                
+                cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));
+                cantProductorPTactil.setText(Integer.toString(cant_prouctores_pantallas));
+                cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
+                cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
+                almacenPantalla.setText(Integer.toString(almacen_pantallas));
+                almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
+                
+                cantJoystickText.setText(Integer.toString(cant_joysticks));
+                cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
+                almacenJoystick.setText(Integer.toString(almacen_joysticks));
+                
+                cantSDText.setText(Integer.toString(cant_sd));
+                cantProductorSD.setText(Integer.toString(cant_productores_sd));
+                almacenSD.setText(Integer.toString(almacen_sd));
+                
+                cantEnsambladorText.setText(Integer.toHexString(cant_ensambladores));
+                consolasTerminadasText.setText(Integer.toString(cant_consolas));
+                
+                control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
 
     private void cantProductorBotonesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cantProductorBotonesPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_cantProductorBotonesPropertyChange
+
+    private void stopProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopProgramActionPerformed
+        // TODO add your handling code here:
+
+        startProgram.setEnabled(true);
+        stopProgram.setEnabled(false);
+        
+        masP_botones.setEnabled(true);
+        menosP_botones.setEnabled(true);
+        
+        masP_pantallas.setEnabled(true);
+        menosP_pantallas.setEnabled(true);
+        
+        masP_joysticks.setEnabled(true);
+        menosP_joysticks.setEnabled(true);
+        
+        masP_SD.setEnabled(true);
+        menosP_SD.setEnabled(true);
+        
+        masEnsambladores.setEnabled(true);
+        menosEnsambladores.setEnabled(true);
+        
+        control.controlDetener();
+    }//GEN-LAST:event_stopProgramActionPerformed
+
+    private void menosP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_botonesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menosP_botonesActionPerformed
+
+    private void masP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_botonesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_masP_botonesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,8 +648,19 @@ public class PanelControl extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton masEnsambladores;
+    private javax.swing.JButton masP_SD;
+    private javax.swing.JButton masP_botones;
+    private javax.swing.JButton masP_joysticks;
+    private javax.swing.JButton masP_pantallas;
+    private javax.swing.JButton menosEnsambladores;
+    private javax.swing.JButton menosP_SD;
+    private javax.swing.JButton menosP_botones;
+    private javax.swing.JButton menosP_joysticks;
+    private javax.swing.JButton menosP_pantallas;
     private javax.swing.JButton startProgram;
     private static javax.swing.JLabel statusGerenteText;
     private static javax.swing.JLabel statusJefeText;
+    private javax.swing.JButton stopProgram;
     // End of variables declaration//GEN-END:variables
 }

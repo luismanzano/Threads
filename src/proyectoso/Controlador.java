@@ -16,6 +16,26 @@ public class Controlador {
     
     public static volatile int contador_global;
    
+    Productor_botones b = new Productor_botones();
+    int max_botones = b.getMax_productores_botones();
+    Productor_botones boton [] = new Productor_botones[max_botones];
+    
+    Productor_pantallas p = new Productor_pantallas();
+    int max_pantallas = p.getMax_productores_pantallas();
+    Productor_pantallas pantalla [] = new Productor_pantallas[max_pantallas];
+    
+    Productor_joysticks j = new Productor_joysticks();
+    int max_joysticks = j.getMax_productores_joysticks();
+    Productor_joysticks joysticks [] = new Productor_joysticks[max_joysticks];
+    
+    Productor_SD s = new Productor_SD();
+    int max_SD = s.getMax_productores_SD();
+    Productor_SD SD [] = new Productor_SD[max_SD];
+    
+    Ensamblador e = new Ensamblador();
+    int max_ensamblador = e.getMax_ensambladores();
+    Ensamblador ens [] = new Ensamblador[max_ensamblador];
+    
     public Controlador() {
     }
     
@@ -38,9 +58,7 @@ public class Controlador {
 //        joystick.start();
 //        sd.start();
         
-        Productor_botones b = new Productor_botones();
-        int max_botones = b.getMax_productores_botones();
-        Productor_botones boton [] = new Productor_botones[max_botones];
+        
                  
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
@@ -50,9 +68,6 @@ public class Controlador {
             System.out.println("THREAD BOTON" + (i+1));    
         }
         
-        Productor_pantallas p = new Productor_pantallas();
-        int max_pantallas = p.getMax_productores_pantallas();
-        Productor_pantallas pantalla [] = new Productor_pantallas[max_pantallas];
                  
          
         for (int i = 0; i < Productor_pantallas.productores_pantallas; i++) {
@@ -62,9 +77,6 @@ public class Controlador {
                 
         }
         
-        Productor_joysticks j = new Productor_joysticks();
-        int max_joysticks = j.getMax_productores_joysticks();
-        Productor_joysticks joysticks [] = new Productor_joysticks[max_joysticks];
 
 
         for (int i = 0; i < Productor_joysticks.productores_joysticks; i++) {
@@ -74,9 +86,6 @@ public class Controlador {
 
         }
         
-        Productor_SD s = new Productor_SD();
-        int max_SD = s.getMax_productores_SD();
-        Productor_SD SD [] = new Productor_SD[max_SD];
                  
          
         for (int i = 0; i < Productor_SD.productores_SD; i++) {
@@ -86,9 +95,6 @@ public class Controlador {
                 
         }
         
-        Ensamblador e = new Ensamblador();
-        int max_ensamblador = e.getMax_ensambladores();
-        Ensamblador ens [] = new Ensamblador[max_ensamblador];
         
         for (int i = 0; i < Ensamblador.ensambladores; i++) {
             
@@ -98,7 +104,45 @@ public class Controlador {
         
     }
     
-    
+    public void controlDetener() {
+        
+          for (int i = 0; i < Productor_botones.productores_botones; i++) {
+            
+            boton[i].stop();
+            System.out.println("THREAD BOTON" + (i+1));    
+        }
+        
+                 
+         
+        for (int i = 0; i < Productor_pantallas.productores_pantallas; i++) {
+            
+            pantalla[i].stop();
+                
+        }
+        
+
+
+        for (int i = 0; i < Productor_joysticks.productores_joysticks; i++) {
+
+            joysticks[i].stop();
+
+        }
+        
+                 
+         
+        for (int i = 0; i < Productor_SD.productores_SD; i++) {
+            
+            SD[i].stop();
+                
+        }
+        
+        
+        for (int i = 0; i < Ensamblador.ensambladores; i++) {
+            
+            ens[i].stop();
+        }
+        
+    }
 }
 
 /*
