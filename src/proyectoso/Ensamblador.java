@@ -58,129 +58,43 @@ public class Ensamblador extends Thread {
         try {
             
             while(true){
-                
-                //colocamos todos los semaforos
-   
-                System.out.println("ENSAMBLADOR ACTIVEICHON");
-                
-                //EL BIG IF DE LEO
-                if(Productor_botones.botones >= 5 /*&& Productor_pantallas.pantallas_normales >= 1 && Productor_pantallas.pantallas_tactiles >=1 && Productor_SD.SD >= 1 && Productor_SD.SD < 1*/){
-                    System.out.println("EL BIG IF DE LEO");
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                if(Productor_botones.botones <= 5){ //AGARRAR BOTONES
-                //wait(); 
-                    System.out.println("esperando por que hayan mas de 5 botones");
-                    
-                    } else {
-                    mutex.acquire();
-                    System.out.println("ya tengo los botones");
-                   consumirBotones();
-                   
-                   try{
-                       semBoton.release();
-                   } catch(Exception e){
-                       System.out.println("Problema haciendo el acquire");
-                       System.out.println(e);
-                   }
-                   
-                    System.out.println("Se hizo el release de semboton");
-                   semBoton.release();
-                   semBoton.release();
-                   semBoton.release();
-                   semBoton.release();
-                   mutex.release();
-                   //consumi botones
-                   //this.semEnsambladorBoton.release();
-                    }
-     
-                //AHORA LAS PANTALLAS Normal
-                this.semEnsambladorPantallaNormal.acquire();
-                if(Productor_pantallas.pantallas_normales < 1){ //AGARRAR PANTALLAS
-                //wait();
-                    System.out.println("Esperando por las pantallas normales");
-                    
-                    } else {
+                System.out.println("Ensamblador" +
+                        "\n Botones disponibles " + Productor_botones.botones +
+                        "\n Pantallas normales disponibles " + Productor_pantallas.pantallas_normales + 
+                        "\n Pantallas tactiles disponibles " + Productor_pantallas.pantallas_tactiles + 
+                        "\n Joystick disponibles " + Productor_joysticks.joysticks + 
+                        "\n Tarjetas SD dispobibles " + Productor_SD.SD);
+                if(Productor_botones.botones > 4 && Productor_pantallas.pantallas_normales > 0 && Productor_pantallas.pantallas_tactiles > 0 && Productor_joysticks.joysticks > 1 && Productor_SD.SD > 0){
+                    System.out.println("Tengo todos los materiales necesarios para ensamblar la consola");
+                    this.semEnsambladorBoton.acquire(5);
+                    this.semEnsambladorPantallaNormal.acquire();
+                    this.semEnsambladorPantallaTactil.acquire();
+                    this.semEnsambladorJoysticks.acquire(2);
+                    this.semEnsambladorSD.acquire();
                     this.mutex.acquire();
-                    System.out.println("ya tengo las pantallas normales");
-                    consumirPantallaNormal();
-                    semPantallas.release();
-                    this.mutex.release();
-                   //this.semEnsambladorPantallaNormal.release();
-                    }
-                
-                //AHORA LAS PANTALLAS TACTILES
-                this.semEnsambladorPantallaTactil.acquire();  //POR ALGUNA RAZON SE DESTRABA SI QUITO EL ACQUIRE
-                if(Productor_pantallas.pantallas_tactiles <1){ //AGARRAR PANTALLAS
-                    System.out.println("esperando por la pantalla tactil");
-                //wait();
-                    } else {
-                    this.mutex.acquire();
-                    System.out.println("Ya tengo la pantalla tactil");
-                    consumirPantallaTactil();
-                    semPantallas.release();
-                    this.mutex.release();
-                   //this.semEnsambladorPantallaTactil.release();
-                    }
-                
-                 //AHORA LAS LECTOR SD
-                 this.semEnsambladorSD.acquire();
-                if(Productor_SD.SD < 1){ //AGARRAR SD
-                //wait();
-                    System.out.println("Esperando por SD");
-                    } else {
-                    this.mutex.acquire();
-                    System.out.println("Ya tengo SD");
-                   consumirSD();
-                   semSD.release();
-                   this.mutex.release();
-                   //this.semEnsambladorSD.release();
-                    }
-                
-                //AHORA JOYSTICKS
-                this.semEnsambladorJoysticks.acquire();
-                if(Productor_joysticks.joysticks < 2){ //AGARRAR JOYSTICKS
-                    System.out.println("Esperando por los Joysticks");
-               // wait();
-                    } else {
-                    this.mutex.acquire();
-                   System.out.println("Ya tengo los joysticks");
+                    consumirBotones();
                     consumirJoysticks();
-                    this.semJoysticks.release();
+                    consumirPantallaNormal();
+                    consumirPantallaTactil();
+                    consumirSD();
+                    consolas_listas ++;
+                    PanelControl.setEstadisticaConsolas(Integer.toHexString(consolas_listas));
                     this.mutex.release();
-                   //this.semEnsambladorJoysticks.release();
-                    }
-            
-            
-            
-            
-            //CON ESTE CODIGO VERIFICAMOS SI TENEMOS TODOS LOS COMPONENTES PARA PRODUCIR UNA CONSOLA
-                    System.out.println("afuera de las consolas");
-            if(this.tengo_botones && this.tengo_pantalla_tactil && this.tengo_pantalla_normal && this.tengo_SD && this.tengo_joysticks){
-                System.out.println("ensamblando las consolas");
-                this.consolas_listas += 1;
-                PanelControl.setEstadisticaConsolas(Integer.toString(this.consolas_listas));
-                System.out.println("Actualizado");
-                Thread.sleep(1000);
-            } else {
-//                this.mutex.release();
-//                Thread.sleep(200);
-            }
-            }
+                    this.semBoton.release(5);
+                    this.semPantallas.release(2);
+                    this.semJoysticks.release(2);
+                    this.semSD.release();
+                    
+
                 }
-               
-                //FIN BIG IF DE LEO 
                 
-            
-            
+                System.out.println("No hay materiales suficientes");
+            }
         } catch (Exception e) {
             System.out.println("Ocurrio un problema ensamblando");
             System.out.println(e);
         }
-    }
+}
     
     public static void consumirBotones(){ //El metodo que se encarga de sacar del almacen y hacer la vaina 
        tengo_botones = Productor_botones.consumir();

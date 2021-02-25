@@ -47,7 +47,7 @@ public class Controlador {
             
             boton[i] = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
             boton[i].start();
-            System.out.println("THREAD BOTON" + (i+1));    
+//            System.out.println("THREAD BOTON" + (i+1));    
         }
         
         Productor_pantallas p = new Productor_pantallas();
