@@ -86,8 +86,15 @@ public class Controlador {
                 
         }
         
-        Ensamblador ensamblador = new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD);
-        ensamblador.start();
+        Ensamblador e = new Ensamblador();
+        int max_ensamblador = e.getMax_ensambladores();
+        Ensamblador ens [] = new Ensamblador[max_ensamblador];
+        
+        for (int i = 0; i < Ensamblador.ensambladores; i++) {
+            
+            ens[i]= new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD); 
+            ens[i].start();
+        }
         
     }
     

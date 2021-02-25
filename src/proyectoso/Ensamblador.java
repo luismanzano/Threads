@@ -18,6 +18,7 @@ public class Ensamblador extends Thread {
     
     public static volatile int consolas_listas = 0;
     public static volatile int ensambladores = 1;
+    private final int max_ensambladores = 5;
     
     //COLOCAMOS LOS PRODUCTORES PARA PODER ACCESAR A ELLOS
     
@@ -50,6 +51,9 @@ public class Ensamblador extends Thread {
     this.semJoysticks = semJoysticks;
     this.semSD = semSD;
     }
+
+    public Ensamblador() {
+    }
     
     
     
@@ -59,100 +63,70 @@ public class Ensamblador extends Thread {
             
             while(true){
                 
-                //colocamos todos los semaforos
-   
-                System.out.println("ENSAMBLADOR ACTIVEICHON");
+                System.out.println("Entrendado al ENSAMBLADOR ");
                 
-                //EL BIG IF DE LEO
-                if(Productor_botones.botones >= 5 /*&& Productor_pantallas.pantallas_normales >= 1 && Productor_pantallas.pantallas_tactiles >=1 && Productor_SD.SD >= 1 && Productor_SD.SD < 1*/){
-                    System.out.println("EL BIG IF DE LEO");
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
-                     this.semEnsambladorBoton.acquire();
+                
+                this.semEnsambladorBoton.acquire(5);
                 if(Productor_botones.botones <= 5){ //AGARRAR BOTONES
-                //wait(); 
-                    System.out.println("esperando por que hayan mas de 5 botones");
+                     System.out.println("esperando por que hayan mas de 5 botones");
                     
                     } else {
                     mutex.acquire();
-                    System.out.println("ya tengo los botones");
+                   System.out.println("ya tengo los botones " + Productor_botones.botones);
                    consumirBotones();
-                   
-                   try{
-                       semBoton.release();
-                   } catch(Exception e){
-                       System.out.println("Problema haciendo el acquire");
-                       System.out.println(e);
-                   }
-                   
-                    System.out.println("Se hizo el release de semboton");
-                   semBoton.release();
-                   semBoton.release();
-                   semBoton.release();
-                   semBoton.release();
                    mutex.release();
-                   //consumi botones
-                   //this.semEnsambladorBoton.release();
-                    }
+                   semBoton.release(5);
+                   }
      
                 //AHORA LAS PANTALLAS Normal
                 this.semEnsambladorPantallaNormal.acquire();
-                if(Productor_pantallas.pantallas_normales < 1){ //AGARRAR PANTALLAS
-                //wait();
+                if(Productor_pantallas.pantallas_normales <= 1){ //AGARRAR PANTALLAS
                     System.out.println("Esperando por las pantallas normales");
                     
                     } else {
                     this.mutex.acquire();
-                    System.out.println("ya tengo las pantallas normales");
+                    System.out.println("ya tengo las pantallas normales " + Productor_pantallas.pantallas_normales);
                     consumirPantallaNormal();
-                    semPantallas.release();
                     this.mutex.release();
-                   //this.semEnsambladorPantallaNormal.release();
-                    }
+                    semPantallas.release();
+                   }
                 
                 //AHORA LAS PANTALLAS TACTILES
                 this.semEnsambladorPantallaTactil.acquire();  //POR ALGUNA RAZON SE DESTRABA SI QUITO EL ACQUIRE
                 if(Productor_pantallas.pantallas_tactiles <1){ //AGARRAR PANTALLAS
                     System.out.println("esperando por la pantalla tactil");
-                //wait();
-                    } else {
+                } else {
                     this.mutex.acquire();
-                    System.out.println("Ya tengo la pantalla tactil");
+                    System.out.println("Ya tengo la pantalla tactil " + Productor_pantallas.pantallas_tactiles);
                     consumirPantallaTactil();
-                    semPantallas.release();
                     this.mutex.release();
+                    semPantallas.release();
                    //this.semEnsambladorPantallaTactil.release();
                     }
                 
                  //AHORA LAS LECTOR SD
                  this.semEnsambladorSD.acquire();
                 if(Productor_SD.SD < 1){ //AGARRAR SD
-                //wait();
                     System.out.println("Esperando por SD");
-                    } else {
+                } else {
                     this.mutex.acquire();
-                    System.out.println("Ya tengo SD");
+                    System.out.println("Ya tengo SD " + Productor_SD.SD);
                    consumirSD();
-                   semSD.release();
                    this.mutex.release();
-                   //this.semEnsambladorSD.release();
-                    }
+                   semSD.release();
+               }
                 
                 //AHORA JOYSTICKS
-                this.semEnsambladorJoysticks.acquire();
+                this.semEnsambladorJoysticks.acquire(2);
                 if(Productor_joysticks.joysticks < 2){ //AGARRAR JOYSTICKS
                     System.out.println("Esperando por los Joysticks");
-               // wait();
-                    } else {
+                } else {
                     this.mutex.acquire();
-                   System.out.println("Ya tengo los joysticks");
+                   System.out.println("Ya tengo los joysticks " + Productor_joysticks.joysticks);
                     consumirJoysticks();
-                    this.semJoysticks.release();
                     this.mutex.release();
-                   //this.semEnsambladorJoysticks.release();
-                    }
+                    this.semJoysticks.release(2);
+               }
             
             
             
@@ -166,30 +140,25 @@ public class Ensamblador extends Thread {
                 System.out.println("Actualizado");
                 Thread.sleep(1000);
             } else {
-//                this.mutex.release();
-//                Thread.sleep(200);
+            
             }
-            }
+                Thread.sleep(1000);
                 }
                
-                //FIN BIG IF DE LEO 
-                
+               
             
             
         } catch (Exception e) {
-            System.out.println("Ocurrio un problema ensamblando");
-            System.out.println(e);
+            System.out.println("Ocurrio un problema ensamblando" + e);
         }
     }
     
     public static void consumirBotones(){ //El metodo que se encarga de sacar del almacen y hacer la vaina 
        tengo_botones = Productor_botones.consumir();
-        System.out.println("efectivamente estan los botones");
     }
     
     public void consumirPantallaNormal(){
         tengo_pantalla_normal = Productor_pantallas.consumirPantallaNormal();
-        System.out.println("efectivamente tengo las pantallas");
     }
     
     public void consumirPantallaTactil(){
@@ -221,6 +190,10 @@ public class Ensamblador extends Thread {
 
     public void setEnsambladores(int ensambladores) {
         this.ensambladores = ensambladores;
+    }
+
+    public int getMax_ensambladores() {
+        return max_ensambladores;
     }
     
     

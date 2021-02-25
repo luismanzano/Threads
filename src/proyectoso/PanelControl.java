@@ -48,6 +48,7 @@ public class PanelControl extends javax.swing.JFrame {
     //CANTIDAD CONSOLAS TERMINADAS
     
     private int cant_consolas = Ensamblador.consolas_listas;
+    private int cant_ensambladores = Ensamblador.ensambladores;
     
     /**
      * Creates new form PanelControl
@@ -380,6 +381,8 @@ public class PanelControl extends javax.swing.JFrame {
             cantSDText.setText(Integer.toString(cant_sd));
             cantProductorSD.setText(Integer.toString(cant_productores_sd));
             almacenSD.setText(Integer.toString(almacen_sd));
+            cantEnsambladorText.setText(Integer.toHexString(cant_ensambladores));
+            consolasTerminadasText.setText(Integer.toString(cant_consolas));
             control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
 

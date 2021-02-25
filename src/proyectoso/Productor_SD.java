@@ -33,15 +33,14 @@ public class Productor_SD extends Thread {
             try {
                 if(almacen_SD > 0){
                     this.semSD.acquire();
+                    Thread.sleep(3000);
                     this.mutex.acquire();
                     SD ++;
                     almacen_SD --;
-                    System.out.println("TARJETA SD");
                     PanelControl.setEstadisticasSD(Integer.toString(SD), Integer.toString(almacen_SD));
-                    this.semEnsambladorSD.release();
                     this.mutex.release();
+                    this.semEnsambladorSD.release();
                 }
-                    Thread.sleep(3000);
 
             } catch (Exception e) {
                 System.out.println(e);
