@@ -40,6 +40,7 @@ public class Productor_botones extends Thread {
                         this.mutex.acquire(); // Disminuye el valor del semáforo, el es quien puede ejecutarse ahora 
                         almacen_botones -=2; // Reduzco espacio del almacen
                         botones+=2; // Creo boton
+                        PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
                         this.mutex.release(); // Aumenta el valor del semáforo, suelta su prioridad para ejecutarse
                         this.semEnsamblarBoton.release(2);
                     }else if (almacen_botones > 0){

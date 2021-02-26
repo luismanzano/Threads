@@ -217,7 +217,7 @@
                                   <Component id="cantEnsambladorText" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="39" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="masEnsambladores" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="menosEnsambladores" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -235,12 +235,14 @@
                               <Component id="almacenPantallaTactil" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cantProductorBotones" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="masP_botones" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cantBotonesText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="almacenBoton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="menosP_botones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cantProductorBotones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantBotonesText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="almacenBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="menosP_botones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -576,48 +578,72 @@
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masP_pantallasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="menosP_pantallas">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosP_pantallasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="masP_joysticks">
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masP_joysticksActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="menosP_joysticks">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosP_joysticksActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="masP_SD">
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masP_SDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="menosP_SD">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosP_SDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="masEnsambladores">
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="masEnsambladoresActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="menosEnsambladores">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menosEnsambladoresActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reanudarPrograma">
       <Properties>

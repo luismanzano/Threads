@@ -233,27 +233,67 @@ public class PanelControl extends javax.swing.JFrame {
 
         masP_pantallas.setText("+");
         masP_pantallas.setEnabled(false);
+        masP_pantallas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masP_pantallasActionPerformed(evt);
+            }
+        });
 
         menosP_pantallas.setText("-");
         menosP_pantallas.setEnabled(false);
+        menosP_pantallas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosP_pantallasActionPerformed(evt);
+            }
+        });
 
         masP_joysticks.setText("+");
         masP_joysticks.setEnabled(false);
+        masP_joysticks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masP_joysticksActionPerformed(evt);
+            }
+        });
 
         menosP_joysticks.setText("-");
         menosP_joysticks.setEnabled(false);
+        menosP_joysticks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosP_joysticksActionPerformed(evt);
+            }
+        });
 
         masP_SD.setText("+");
         masP_SD.setEnabled(false);
+        masP_SD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masP_SDActionPerformed(evt);
+            }
+        });
 
         menosP_SD.setText("-");
         menosP_SD.setEnabled(false);
+        menosP_SD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosP_SDActionPerformed(evt);
+            }
+        });
 
         masEnsambladores.setText("+");
         masEnsambladores.setEnabled(false);
+        masEnsambladores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masEnsambladoresActionPerformed(evt);
+            }
+        });
 
         menosEnsambladores.setText("-");
         menosEnsambladores.setEnabled(false);
+        menosEnsambladores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosEnsambladoresActionPerformed(evt);
+            }
+        });
 
         reanudarPrograma.setText("Reanudar");
         reanudarPrograma.setEnabled(false);
@@ -419,9 +459,9 @@ public class PanelControl extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(cantEnsambladorText))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(masEnsambladores)
-                                    .addComponent(menosEnsambladores))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(masEnsambladores, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(menosEnsambladores, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -432,12 +472,13 @@ public class PanelControl extends javax.swing.JFrame {
                                 .addComponent(cantPTactilText)
                                 .addComponent(almacenPantallaTactil))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cantProductorBotones)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(masP_botones)
-                                    .addComponent(cantBotonesText)
-                                    .addComponent(almacenBoton)
-                                    .addComponent(menosP_botones))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cantProductorBotones)
+                                        .addComponent(cantBotonesText)
+                                        .addComponent(almacenBoton)
+                                        .addComponent(menosP_botones)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cantProductorPantalla)
@@ -544,12 +585,17 @@ public class PanelControl extends javax.swing.JFrame {
 
     private void menosP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_botonesActionPerformed
          // TODO add your handling code here:
+         control.despedirP_botones();
+        cantProductorBotones.setText(Integer.toString(Productor_botones.productores_botones));
     }//GEN-LAST:event_menosP_botonesActionPerformed
 
     private void masP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_botonesActionPerformed
         // TODO add your handling code here:
+        control.contratarP_botones();
+        cantProductorBotones.setText(Integer.toString(Productor_botones.productores_botones));
     }//GEN-LAST:event_masP_botonesActionPerformed
 
+   
     private void reanudarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reanudarProgramaActionPerformed
         // TODO add your handling code here:
         reanudarPrograma.setEnabled(false);
@@ -570,8 +616,58 @@ public class PanelControl extends javax.swing.JFrame {
         masEnsambladores.setEnabled(false);
         menosEnsambladores.setEnabled(false);
         
-        control.controlInicio();
+        control.reanudar();
     }//GEN-LAST:event_reanudarProgramaActionPerformed
+
+    private void masP_pantallasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_pantallasActionPerformed
+        // TODO add your handling code here:
+        control.contratarP_pantallas();
+        cantProductorPantalla.setText(Integer.toString(Productor_pantallas.productores_pantallas));
+        cantProductorPTactil.setText(Integer.toString(Productor_pantallas.productores_pantallas));
+    }//GEN-LAST:event_masP_pantallasActionPerformed
+
+    private void menosP_pantallasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_pantallasActionPerformed
+        // TODO add your handling code here:
+        control.despedirP_pantallas();
+        cantProductorPantalla.setText(Integer.toString(Productor_pantallas.productores_pantallas));
+        cantProductorPTactil.setText(Integer.toString(Productor_pantallas.productores_pantallas));
+    }//GEN-LAST:event_menosP_pantallasActionPerformed
+
+    private void masP_joysticksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_joysticksActionPerformed
+        // TODO add your handling code here:
+        control.contratarP_joysticks();
+        cantProductorJoystick.setText(Integer.toString(Productor_joysticks.productores_joysticks));
+    }//GEN-LAST:event_masP_joysticksActionPerformed
+
+    private void menosP_joysticksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_joysticksActionPerformed
+        // TODO add your handling code here:
+        control.despedirP_joysticks();
+        cantProductorJoystick.setText(Integer.toString(Productor_joysticks.productores_joysticks));
+    }//GEN-LAST:event_menosP_joysticksActionPerformed
+
+    private void masP_SDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_SDActionPerformed
+        // TODO add your handling code here:
+        control.contratarP_SD();
+        cantProductorSD.setText(Integer.toString(Productor_SD.productores_SD));
+    }//GEN-LAST:event_masP_SDActionPerformed
+
+    private void menosP_SDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_SDActionPerformed
+        // TODO add your handling code here:
+        control.despedirP_SD();
+        cantProductorSD.setText(Integer.toString(Productor_SD.productores_SD));
+    }//GEN-LAST:event_menosP_SDActionPerformed
+
+    private void masEnsambladoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masEnsambladoresActionPerformed
+        // TODO add your handling code here:
+        control.contratarEnsamblador();
+        cantEnsambladorText.setText(Integer.toString(Ensamblador.ensambladores));
+    }//GEN-LAST:event_masEnsambladoresActionPerformed
+
+    private void menosEnsambladoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosEnsambladoresActionPerformed
+        // TODO add your handling code here:
+        control.despedirEnsamblador();
+        cantEnsambladorText.setText(Integer.toString(Ensamblador.ensambladores));
+    }//GEN-LAST:event_menosEnsambladoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,6 +709,8 @@ public class PanelControl extends javax.swing.JFrame {
         cantSDText.setText(SD);
         almacenSD.setText(almacen);
     }
+    
+   
     
     public static void main(String args[]) {
          

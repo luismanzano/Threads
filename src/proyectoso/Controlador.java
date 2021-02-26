@@ -6,6 +6,7 @@
 package proyectoso;
 
 import java.util.concurrent.Semaphore;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,6 +42,7 @@ public class Controlador {
     
         
     public void controlInicio(){
+        
         Semaphore mutex = new Semaphore(1); // 1 - 1 = 0 
         Semaphore semBoton = new Semaphore(45); // 45 - 2 = 43
         Semaphore semEnsambladorBoton = new Semaphore(0); // 0 + 2 = 2
@@ -51,15 +53,28 @@ public class Controlador {
         Semaphore semEnsambladorJoysticks = new Semaphore(0);
         Semaphore semSD = new Semaphore(15);
         Semaphore semEnsambladorSD = new Semaphore(0);
-//        Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
-//        Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
-//        Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
-//        pantalla.start();
-//        joystick.start();
-//        sd.start();
         
+        inicializadorThreads(mutex, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
+    }
+    
+    public void reanudar(){
         
-                 
+        Semaphore mutex = new Semaphore(1);
+        Semaphore semBoton = new Semaphore(Productor_botones.almacen_botones);
+        Semaphore semEnsambladorBoton = new Semaphore(Productor_botones.botones);
+        Semaphore semPantallas = new Semaphore(Productor_pantallas.almacen_pantallas);
+        Semaphore semEnsambladorPantallaNormal = new Semaphore(Productor_pantallas.pantallas_normales);
+        Semaphore semEnsambladorPantallaTactil = new Semaphore(Productor_pantallas.pantallas_tactiles);
+        Semaphore semJoysticks = new Semaphore(Productor_joysticks.almacen_joysticks);
+        Semaphore semEnsambladorJoysticks = new Semaphore(Productor_joysticks.joysticks);
+        Semaphore semSD = new Semaphore(Productor_SD.almacen_SD);
+        Semaphore semEnsambladorSD = new Semaphore(Productor_SD.SD);
+        
+        inicializadorThreads(mutex, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
+
+    }
+        
+     private void inicializadorThreads(Semaphore mutex, Semaphore semBoton, Semaphore semEnsambladorBoton, Semaphore semPantallas, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, Semaphore semSD, Semaphore semEnsambladorSD){            
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
             
@@ -142,6 +157,86 @@ public class Controlador {
             ens[i].stop();
         }
         
+    }
+    
+    public void contratarP_botones(){
+        if(Productor_botones.productores_botones >= b.getMax_productores_botones()){
+            JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de botones alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_botones.productores_botones ++;
+        }
+    }
+    
+    public void despedirP_botones(){
+        if(Productor_botones.productores_botones < 1){
+            JOptionPane.showMessageDialog(null, "Cantidad mínima  de producotres de botones alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_botones.productores_botones --;
+        }
+    }
+    
+    public void contratarP_pantallas(){
+        if(Productor_pantallas.productores_pantallas >= p.getMax_productores_pantallas()){
+            JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de pantallas alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_pantallas.productores_pantallas ++;
+        }
+    }
+    
+    public void despedirP_pantallas(){
+        if(Productor_pantallas.productores_pantallas < 1){
+            JOptionPane.showMessageDialog(null, "Cantidad mínima  de producotres de pantallas alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_pantallas.productores_pantallas --;
+        }
+    }
+    
+    public void contratarP_joysticks(){
+        if(Productor_joysticks.productores_joysticks >= j.getMax_productores_joysticks()){
+            JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de joysticks alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_joysticks.productores_joysticks ++;
+        }
+    }
+    
+    public void despedirP_joysticks(){
+        if(Productor_joysticks.productores_joysticks < 1){
+            JOptionPane.showMessageDialog(null, "Cantidad mínima  de producotres de joysticks alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_joysticks.productores_joysticks --;
+        }
+    }
+    
+    public void contratarP_SD(){
+        if(Productor_SD.productores_SD >= s.getMax_productores_SD()){
+            JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de tarjetas SD alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_SD.productores_SD ++;
+        }
+    }
+    
+    public void despedirP_SD(){
+        if(Productor_SD.productores_SD < 1){
+            JOptionPane.showMessageDialog(null, "Cantidad mínima  de producotres de tarjetas SD alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Productor_SD.productores_SD --;
+        }
+    }
+    
+    public void contratarEnsamblador(){
+        if(Ensamblador.ensambladores >= e.getMax_ensambladores()){
+            JOptionPane.showMessageDialog(null, "Cantidad máxima de ensambladores alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Ensamblador.ensambladores ++;
+        }
+    }
+    
+    public void despedirEnsamblador(){
+        if(Ensamblador.ensambladores < 1){
+            JOptionPane.showMessageDialog(null, "Cantidad mínima  de ensambladores alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Ensamblador.ensambladores --;
+        }
     }
 }
 
