@@ -15,7 +15,7 @@ public class Productor_joysticks extends Thread{
     public static volatile int almacen_joysticks = 20;
     public static volatile int productores_joysticks = 2;
     public static volatile int joysticks = 0;
-    public static int max_productores_joysticks = 4;
+    public static volatile int max_productores_joysticks = 4;
 
     public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks) {
     this.mutex = mutex;

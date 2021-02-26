@@ -17,6 +17,7 @@ public class Controlador {
     
     public static volatile int contador_global;
     public static volatile int dias_restantes;
+    public static volatile int duracion_dias;
    
     Productor_botones b = new Productor_botones();
     int max_botones = b.getMax_productores_botones();
@@ -51,63 +52,19 @@ public class Controlador {
 
         int inicial_SD;
         int maximo_SD;
-    
-    
-    public Controlador() {
-    }
-    
-        
-    public void controlInicio(){
-        
-        Semaphore mutex = new Semaphore(1); // 1 - 1 = 0 
-        Semaphore semBoton = new Semaphore(45); // 45 - 2 = 43
-        Semaphore semEnsambladorBoton = new Semaphore(0); // 0 + 2 = 2
-        Semaphore semPantallas = new Semaphore(40);
-        Semaphore semEnsambladorPantallaNormal = new Semaphore(0);
-        Semaphore semEnsambladorPantallaTactil = new Semaphore(0);
-        Semaphore semJoysticks = new Semaphore(20);
-        Semaphore semEnsambladorJoysticks = new Semaphore(0);
-        Semaphore semSD = new Semaphore(15);
-        Semaphore semEnsambladorSD = new Semaphore(0);
-        
-        inicializadorThreads(mutex, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
-    }
-    
-    public void reanudar(){
-        
-        Semaphore mutex = new Semaphore(1);
-        Semaphore semBoton = new Semaphore(Productor_botones.almacen_botones);
-        Semaphore semEnsambladorBoton = new Semaphore(Productor_botones.botones);
-        Semaphore semPantallas = new Semaphore(Productor_pantallas.almacen_pantallas);
-        Semaphore semEnsambladorPantallaNormal = new Semaphore(Productor_pantallas.pantallas_normales);
-        Semaphore semEnsambladorPantallaTactil = new Semaphore(Productor_pantallas.pantallas_tactiles);
-        Semaphore semJoysticks = new Semaphore(Productor_joysticks.almacen_joysticks);
-        Semaphore semEnsambladorJoysticks = new Semaphore(Productor_joysticks.joysticks);
-        Semaphore semSD = new Semaphore(Productor_SD.almacen_SD);
-        Semaphore semEnsambladorSD = new Semaphore(Productor_SD.SD);
-        
-        inicializadorThreads(mutex, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
-
-        int inicial_pantallas;
-        int maximo_pantallas;
-
-        int inicial_joysticks;
-        int maximo_joysticks;
-
-        int inicial_botones;
-        int maximo_botones;
-
-        int inicial_SD;
-        int maximo_SD;
-        
-        int cantidad_dias;
-        int duracion_dias;
         
         int almacen_pantallas;
         int almacen_joysticks;
         int almacen_botones;
         int almacen_SD;
         
+        int cantidad_dias;
+    
+    public Controlador() {
+    }
+    
+        
+    public void controlInicio(){
         LeerTxt lectorVariables = new LeerTxt();
         //COMO PUEDE HABER UNA EXCEPCION DE FILE NOT FOUND , PRIMERO HACES UN TRY 
         try{
@@ -122,7 +79,7 @@ public class Controlador {
             inicial_joysticks = lectorVariables.getInicial_pantallas();
             Productor_joysticks.productores_joysticks = inicial_joysticks;
             maximo_joysticks = lectorVariables.getInicial_pantallas();
-            Productor_joysticks.max_productores_joysticks = inicial_joysticks;
+            Productor_joysticks.max_productores_joysticks = maximo_joysticks;
             
             inicial_botones = lectorVariables.getInicial_pantallas();
             Productor_botones.productores_botones = inicial_botones;
@@ -142,8 +99,21 @@ public class Controlador {
             almacen_botones = lectorVariables.getAlmacen_botones();
             almacen_SD = lectorVariables.getAlmacen_SD();
             
+            //coloco el tamano de los almacenes segun el sd
+            Productor_pantallas.almacen_pantallas = almacen_pantallas;
+            System.out.println("Almacen pantallas " + Productor_pantallas.almacen_pantallas);
+            
+            Productor_joysticks.almacen_joysticks = almacen_pantallas;
+            System.out.println("Almacen  Joysticks " + Productor_joysticks.almacen_joysticks);
+            
+            Productor_botones.almacen_botones = almacen_pantallas;
+            System.out.println("Almacen botones " + Productor_botones.almacen_botones);
+            
+            Productor_SD.almacen_SD = almacen_pantallas;
+            System.out.println("Almacen pantallas SD " + Productor_SD.almacen_SD);
+            
             //aqui estan las variables para que funcionen jefe y gerente
-            contador_global = duracion_dias*4;
+            contador_global = cantidad_dias*4;
             dias_restantes = cantidad_dias;
             
             
@@ -156,10 +126,49 @@ public class Controlador {
         PanelControl.setEstadisticasProductorJoysticks(String.valueOf(Productor_joysticks.productores_joysticks));
         PanelControl.setEstadisticasProductorPantallas(String.valueOf(Productor_pantallas.productores_pantallas));
         PanelControl.setEstadisticasProductorSD(String.valueOf(Productor_SD.productores_SD));
+        
+        Semaphore mutex = new Semaphore(1); // 1 - 1 = 0 
+        Semaphore mutex2 = new Semaphore(1);
+        Semaphore semBoton = new Semaphore(almacen_botones); // 45 - 2 = 43
+        Semaphore semEnsambladorBoton = new Semaphore(0); // 0 + 2 = 2
+        Semaphore semPantallas = new Semaphore(almacen_pantallas);
+        Semaphore semEnsambladorPantallaNormal = new Semaphore(0);
+        Semaphore semEnsambladorPantallaTactil = new Semaphore(0);
+        Semaphore semJoysticks = new Semaphore(almacen_joysticks);
+        Semaphore semEnsambladorJoysticks = new Semaphore(0);
+        Semaphore semSD = new Semaphore(almacen_SD);
+        Semaphore semEnsambladorSD = new Semaphore(0);
+        
+        //colocando las varibales de las otras clases segun el txt
+        
+        
+        inicializadorThreads(mutex, mutex2, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
+        
+    }
+    
+    public void reanudar(){
+        
+        Semaphore mutex = new Semaphore(1);
+        Semaphore mutex2 = new Semaphore(1);
+        Semaphore semBoton = new Semaphore(Productor_botones.almacen_botones);
+        Semaphore semEnsambladorBoton = new Semaphore(Productor_botones.botones);
+        Semaphore semPantallas = new Semaphore(Productor_pantallas.almacen_pantallas);
+        Semaphore semEnsambladorPantallaNormal = new Semaphore(Productor_pantallas.pantallas_normales);
+        Semaphore semEnsambladorPantallaTactil = new Semaphore(Productor_pantallas.pantallas_tactiles);
+        Semaphore semJoysticks = new Semaphore(Productor_joysticks.almacen_joysticks);
+        Semaphore semEnsambladorJoysticks = new Semaphore(Productor_joysticks.joysticks);
+        Semaphore semSD = new Semaphore(Productor_SD.almacen_SD);
+        Semaphore semEnsambladorSD = new Semaphore(Productor_SD.SD);
+        
+        inicializadorThreads(mutex, mutex2, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
+
+        
+        
+        
                  
     }
         
-     private void inicializadorThreads(Semaphore mutex, Semaphore semBoton, Semaphore semEnsambladorBoton, Semaphore semPantallas, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, Semaphore semSD, Semaphore semEnsambladorSD){            
+     private void inicializadorThreads(Semaphore mutex, Semaphore mutex2, Semaphore semBoton, Semaphore semEnsambladorBoton, Semaphore semPantallas, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, Semaphore semSD, Semaphore semEnsambladorSD){            
 
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
@@ -202,7 +211,9 @@ public class Controlador {
             ens[i]= new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD); 
             ens[i].start();
         }
-        
+        //coloco el jefe
+        Jefe jefe = new Jefe(mutex, mutex2, duracion_dias);
+        jefe.run();
     }
      
      /* Metodo para detener la simulacion */

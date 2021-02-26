@@ -700,6 +700,10 @@ public class PanelControl extends javax.swing.JFrame {
         almacenPantallaTactil.setText(almacen);
     }
     
+    public static void setEstadisticaDiasRestantes(String string ){
+        diasLanzamientoText.setText(string);
+    }
+    
     public static void setEstadisticasJoysticks(String joysticks, String almacen){
         cantJoystickText.setText(joysticks);
         almacenJoystick.setText(almacen);

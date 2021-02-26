@@ -11,21 +11,70 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Jefe extends Thread{
-    Semaphore mutex2;
+    Semaphore mutex, mutex2;
+    private int dia;
+    private int corridas = 4; //Uy si que sabroso, muchas corridas
+
+    public Jefe(Semaphore mutex, Semaphore mutex2, int dia) {
+        this.mutex = mutex;
+        this.mutex2 = mutex2;
+        this.dia = dia;
+    }
     
     
-    public void run(){
+    
+    public void run_old(){
         while (true){
             try {
-                Thread.sleep(LeerTxt.getMsDias()/4); // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
-                this.mutex2.acquire();
+                
+                // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
+                //this.mutex2.acquire();
+                this.mutex.acquire();
                 Controlador.contador_global --;
-                this.mutex2.release();
+                if (this.corridas==0) {
+                    this.corridas = 4;
+                    Controlador.dias_restantes--;
+                    System.out.println("Ya paso un dias!!!!" + " " + Controlador.dias_restantes);
+                } else {
+                    this.corridas--;
+                    System.out.println("Las corridas que quedan " + this.corridas);
+                }
+                this.mutex.release();
+                Thread.sleep((this.dia)/4);
+                //this.mutex2.release();
                 
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
+    }
+    
+        public void run(){ // Método para correr hilos 
+        
+        while(true){
+            try {
+                // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
+                //this.mutex2.acquire();
+                this.mutex.acquire();
+                Controlador.contador_global --;
+                if (this.corridas==0) {
+                    this.corridas = 4;
+                    Controlador.dias_restantes--;
+                    System.out.println("Ya paso un dias!!!!" + " " + Controlador.dias_restantes);
+                } else {
+                    this.corridas--;
+                    System.out.println("Las corridas que quedan " + this.corridas);
+                }
+                this.mutex.release();
+                Thread.sleep((this.dia)/4);
+                //this.mutex2.release();
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        
+        
+           
     }
     
 }

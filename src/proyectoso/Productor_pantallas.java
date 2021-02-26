@@ -16,7 +16,7 @@ public class Productor_pantallas extends Thread {
     public static volatile int pantallas_normales = 0;
     public static volatile int pantallas_tactiles = 0; 
     public static volatile int productores_pantallas = 3;
-    public static int max_productores_pantallas = 5;
+    public static volatile int max_productores_pantallas = 5;
 
     public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil) {
     this.mutex = mutex; 

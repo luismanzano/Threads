@@ -6,6 +6,13 @@
 5
 1
 5
+100
+2
+40
+30
+35
+50
+32
 Linea 1 -> Inicial Pantallas
 Linea 2 -> Maximo Pantallas
 Linea 3 -> Inicial Botones
