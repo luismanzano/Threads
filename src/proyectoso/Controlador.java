@@ -36,6 +36,21 @@ public class Controlador {
     int max_ensamblador = e.getMax_ensambladores();
     Ensamblador ens [] = new Ensamblador[max_ensamblador];
     
+    //Variables de minimos y maximos 
+    
+      int inicial_pantallas;
+        int maximo_pantallas;
+
+        int inicial_joysticks;
+        int maximo_joysticks;
+
+        int inicial_botones;
+        int maximo_botones;
+
+        int inicial_SD;
+        int maximo_SD;
+    
+    
     public Controlador() {
     }
     
@@ -57,15 +72,56 @@ public class Controlador {
 //        pantalla.start();
 //        joystick.start();
 //        sd.start();
+
+        int inicial_pantallas;
+        int maximo_pantallas;
+
+        int inicial_joysticks;
+        int maximo_joysticks;
+
+        int inicial_botones;
+        int maximo_botones;
+
+        int inicial_SD;
+        int maximo_SD;
         
         LeerTxt lectorVariables = new LeerTxt();
-        
+        //COMO PUEDE HABER UNA EXCEPCION DE FILE NOT FOUND , PRIMERO HACES UN TRY 
         try{
             lectorVariables.leer_variables();
+            //SI LOGRAMOS ENCONTRAR EL ARCHIVO, AHORA NOS TRAEMOS LAS VARIABLES A UN ENTORNO LOCAL
+            inicial_pantallas = lectorVariables.getInicial_pantallas();
+            Productor_pantallas.productores_pantallas = inicial_pantallas;
+            
+            maximo_pantallas = lectorVariables.getInicial_pantallas();
+            Productor_pantallas.max_productores_pantallas = maximo_pantallas;
+            
+            inicial_joysticks = lectorVariables.getInicial_pantallas();
+            Productor_joysticks.productores_joysticks = inicial_joysticks;
+            maximo_joysticks = lectorVariables.getInicial_pantallas();
+            Productor_joysticks.max_productores_joysticks = inicial_joysticks;
+            
+            inicial_botones = lectorVariables.getInicial_pantallas();
+            Productor_botones.productores_botones = inicial_botones;
+            maximo_botones = lectorVariables.getInicial_pantallas();
+            Productor_botones.max_productores_botones = maximo_botones;
+            
+            inicial_SD = lectorVariables.getInicial_pantallas();
+            Productor_SD.productores_SD = inicial_SD;
+            maximo_SD = lectorVariables.getInicial_pantallas();
+            Productor_SD.max_productores_SD = maximo_SD;
+            
+            
+            
         } catch(Exception e) {
             System.out.println(e);
-            System.out.println("No existe el archivo o el mismo esta corroupto");
+            System.out.println("No existe el archivo o el mismo esta corrupto");
         }
+        
+        PanelControl.setEstadisticasProductorBotones(String.valueOf(Productor_botones.productores_botones));
+        PanelControl.setEstadisticasProductorJoysticks(String.valueOf(Productor_joysticks.productores_joysticks));
+        PanelControl.setEstadisticasProductorPantallas(String.valueOf(Productor_pantallas.productores_pantallas));
+        PanelControl.setEstadisticasProductorSD(String.valueOf(Productor_SD.productores_SD));
                  
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {

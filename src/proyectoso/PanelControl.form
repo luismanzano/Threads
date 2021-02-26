@@ -209,7 +209,7 @@
                                   <Component id="cantEnsambladorText" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="39" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="masEnsambladores" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="menosEnsambladores" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -227,12 +227,14 @@
                               <Component id="almacenPantallaTactil" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cantProductorBotones" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="masP_botones" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cantBotonesText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="almacenBoton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="menosP_botones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cantProductorBotones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantBotonesText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="almacenBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="menosP_botones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">

@@ -404,9 +404,9 @@ public class PanelControl extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(cantEnsambladorText))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(masEnsambladores)
-                                    .addComponent(menosEnsambladores))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(masEnsambladores, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(menosEnsambladores, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -417,12 +417,13 @@ public class PanelControl extends javax.swing.JFrame {
                                 .addComponent(cantPTactilText)
                                 .addComponent(almacenPantallaTactil))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cantProductorBotones)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(masP_botones)
-                                    .addComponent(cantBotonesText)
-                                    .addComponent(almacenBoton)
-                                    .addComponent(menosP_botones))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cantProductorBotones)
+                                        .addComponent(cantBotonesText)
+                                        .addComponent(almacenBoton)
+                                        .addComponent(menosP_botones)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cantProductorPantalla)
@@ -574,6 +575,23 @@ public class PanelControl extends javax.swing.JFrame {
     public static void setEstadisticasSD(String SD, String almacen){
         cantSDText.setText(SD);
         almacenSD.setText(almacen);
+    }
+    
+    public static void setEstadisticasProductorBotones(String valor){
+        cantProductorBotones.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorPantallas(String valor){
+        cantProductorPantalla.setText(valor);
+        cantProductorPTactil.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorJoysticks(String valor){
+        cantProductorJoystick.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorSD(String valor){
+        cantProductorSD.setText(valor);
     }
     
     public static void main(String args[]) {
