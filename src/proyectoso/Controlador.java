@@ -142,6 +142,7 @@ public class Controlador {
             almacen_botones = lectorVariables.getAlmacen_botones();
             almacen_SD = lectorVariables.getAlmacen_SD();
             
+            //aqui estan las variables para que funcionen jefe y gerente
             contador_global = duracion_dias*4;
             dias_restantes = cantidad_dias;
             
