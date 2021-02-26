@@ -42,20 +42,19 @@ public class Productor_botones extends Thread {
                         botones+=2; // Creo boton
                         this.mutex.release(); // Aumenta el valor del semáforo, suelta su prioridad para ejecutarse
                         this.semEnsamblarBoton.release(2);
-                    }else{
+                    }else if (almacen_botones > 0){
                         this.semBoton.acquire();
                         Thread.sleep(1000);
                         this.mutex.acquire();
                         almacen_botones --;
                         botones++;
-                        System.out.println("CREANDO 1 SOLO BOTON");
+                        PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
                         this.mutex.release();
                         this.semEnsamblarBoton.release();
                     }
                     
-                    PanelControl.setEstadisticaBotones(Integer.toString(botones),Integer.toString(almacen_botones));
                 }
-            
+            Thread.sleep(1000);
             } catch (InterruptedException e) {
                 System.out.println(e);
             }

@@ -116,6 +116,7 @@ public class PanelControl extends javax.swing.JFrame {
         menosP_SD = new javax.swing.JButton();
         masEnsambladores = new javax.swing.JButton();
         menosEnsambladores = new javax.swing.JButton();
+        reanudarPrograma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -254,6 +255,14 @@ public class PanelControl extends javax.swing.JFrame {
         menosEnsambladores.setText("-");
         menosEnsambladores.setEnabled(false);
 
+        reanudarPrograma.setText("Reanudar");
+        reanudarPrograma.setEnabled(false);
+        reanudarPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reanudarProgramaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -310,10 +319,15 @@ public class PanelControl extends javax.swing.JFrame {
                                 .addGap(60, 60, 60))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(startProgram)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(25, 25, 25))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(startProgram)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(reanudarPrograma)
+                                        .addGap(36, 36, 36)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,7 +387,8 @@ public class PanelControl extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startProgram)
-                    .addComponent(stopProgram))
+                    .addComponent(stopProgram)
+                    .addComponent(reanudarPrograma))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -506,7 +521,7 @@ public class PanelControl extends javax.swing.JFrame {
     private void stopProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopProgramActionPerformed
         // TODO add your handling code here:
 
-        startProgram.setEnabled(true);
+        reanudarPrograma.setEnabled(true);
         stopProgram.setEnabled(false);
         
         masP_botones.setEnabled(true);
@@ -528,12 +543,35 @@ public class PanelControl extends javax.swing.JFrame {
     }//GEN-LAST:event_stopProgramActionPerformed
 
     private void menosP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosP_botonesActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
     }//GEN-LAST:event_menosP_botonesActionPerformed
 
     private void masP_botonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masP_botonesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_masP_botonesActionPerformed
+
+    private void reanudarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reanudarProgramaActionPerformed
+        // TODO add your handling code here:
+        reanudarPrograma.setEnabled(false);
+        stopProgram.setEnabled(true);
+        
+        masP_botones.setEnabled(false);
+        menosP_botones.setEnabled(false);
+        
+        masP_pantallas.setEnabled(false);
+        menosP_pantallas.setEnabled(false);
+        
+        masP_joysticks.setEnabled(false);
+        menosP_joysticks.setEnabled(false);
+        
+        masP_SD.setEnabled(false);
+        menosP_SD.setEnabled(false);
+        
+        masEnsambladores.setEnabled(false);
+        menosEnsambladores.setEnabled(false);
+        
+        control.controlInicio();
+    }//GEN-LAST:event_reanudarProgramaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -658,6 +696,7 @@ public class PanelControl extends javax.swing.JFrame {
     private javax.swing.JButton menosP_botones;
     private javax.swing.JButton menosP_joysticks;
     private javax.swing.JButton menosP_pantallas;
+    private javax.swing.JButton reanudarPrograma;
     private javax.swing.JButton startProgram;
     private static javax.swing.JLabel statusGerenteText;
     private static javax.swing.JLabel statusJefeText;

@@ -31,8 +31,8 @@ public class Productor_SD extends Thread {
         while(true){
             
             try {
+                this.semSD.acquire();
                 if(almacen_SD > 0){
-                    this.semSD.acquire();
                     Thread.sleep(3000);
                     this.mutex.acquire();
                     SD ++;

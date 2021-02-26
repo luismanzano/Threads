@@ -34,8 +34,8 @@ public class Productor_pantallas extends Thread {
         while(true){
             try {
                 //Pantalla normal
-                if(almacen_pantallas > 0){
                 this.semPantalla.acquire();
+                if(almacen_pantallas > 0){
                 Thread.sleep(1000);
                 this.mutex.acquire();
                 almacen_pantallas --;
@@ -45,8 +45,8 @@ public class Productor_pantallas extends Thread {
                 this.semEnsambladorPantallaNormal.release();
                 }
                 //Pantalla tactil
-                if(almacen_pantallas > 0){
                 this.semPantalla.acquire();
+                if(almacen_pantallas > 0){
                 Thread.sleep(2000);
                 this.mutex.acquire();
                 almacen_pantallas --;

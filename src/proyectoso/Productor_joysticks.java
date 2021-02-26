@@ -31,8 +31,8 @@ public class Productor_joysticks extends Thread{
     public void run(){
         while(true){
             try {
-                if(almacen_joysticks > 0){
                 this.semJoysticks.acquire();
+                if(almacen_joysticks > 0){
                 Thread.sleep(2000);
                 this.mutex.acquire();
                 almacen_joysticks --;
