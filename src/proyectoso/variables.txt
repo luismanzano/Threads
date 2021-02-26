@@ -1,0 +1,16 @@
+1
+5
+1
+5
+1
+5
+1
+5
+Linea 1 -> Inicial Pantallas
+Linea 2 -> Maximo Pantallas
+Linea 3 -> Inicial Botones
+Linea 4-> Maximo Botones
+Linea 5 -> Inicial Joysticks
+Linea 6 -> Maximo Joysticks
+Linea 7 -> Inicial SD
+Linea 8 ->Maximo SD

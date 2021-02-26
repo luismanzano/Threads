@@ -58,7 +58,14 @@ public class Controlador {
 //        joystick.start();
 //        sd.start();
         
+        LeerTxt lectorVariables = new LeerTxt();
         
+        try{
+            lectorVariables.leer_variables();
+        } catch(Exception e) {
+            System.out.println(e);
+            System.out.println("No existe el archivo o el mismo esta corroupto");
+        }
                  
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
