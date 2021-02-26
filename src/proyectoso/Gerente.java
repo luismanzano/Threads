@@ -12,4 +12,35 @@ import java.util.concurrent.Semaphore;
  */
 public class Gerente extends Thread{
     Semaphore mutex2;
+    private int dia;
+    
+    Gerente(Semaphore mutex, Semaphore mutex2, int dia) {
+        this.mutex2 = mutex2;
+        this.dia = dia;
+    }
+    
+    
+        public void run(){ // Método para correr hilos 
+        
+        while(true){
+            try {
+                // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
+                this.mutex2.acquire();
+                Controlador.contador_global --;
+                if (Controlador.dias_restantes == 0) {
+                    Controlador.dias_restantes = Controlador.ciclo_dias;
+                } else {
+                    
+                }
+                this.mutex2.release();
+                Thread.sleep(this.dia/12);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        
+        
+           
+    }
+    
 }

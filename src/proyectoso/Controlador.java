@@ -18,6 +18,7 @@ public class Controlador {
     public static volatile int contador_global;
     public static volatile int dias_restantes;
     public static volatile int duracion_dias;
+    public static volatile int ciclo_dias;
    
     Productor_botones b = new Productor_botones();
     int max_botones = b.getMax_productores_botones();
@@ -115,6 +116,7 @@ public class Controlador {
             //aqui estan las variables para que funcionen jefe y gerente
             contador_global = cantidad_dias*4;
             dias_restantes = cantidad_dias;
+            ciclo_dias = cantidad_dias;
             
             
         } catch(Exception e) {
@@ -213,7 +215,9 @@ public class Controlador {
         }
         //coloco el jefe
         Jefe jefe = new Jefe(mutex, mutex2, duracion_dias);
-        jefe.run();
+        Gerente gerente = new Gerente(mutex, mutex2, duracion_dias);
+        jefe.start();
+        gerente.start();
     }
      
      /* Metodo para detener la simulacion */

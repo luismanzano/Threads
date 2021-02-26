@@ -22,52 +22,24 @@ public class Jefe extends Thread{
     }
     
     
-    
-    public void run_old(){
-        while (true){
-            try {
-                
-                // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
-                //this.mutex2.acquire();
-                this.mutex.acquire();
-                Controlador.contador_global --;
-                if (this.corridas==0) {
-                    this.corridas = 4;
-                    Controlador.dias_restantes--;
-                    System.out.println("Ya paso un dias!!!!" + " " + Controlador.dias_restantes);
-                } else {
-                    this.corridas--;
-                    System.out.println("Las corridas que quedan " + this.corridas);
-                }
-                this.mutex.release();
-                Thread.sleep((this.dia)/4);
-                //this.mutex2.release();
-                
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-    }
-    
         public void run(){ // Método para correr hilos 
         
         while(true){
             try {
                 // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
-                //this.mutex2.acquire();
-                this.mutex.acquire();
+                this.mutex2.acquire();
                 Controlador.contador_global --;
                 if (this.corridas==0) {
                     this.corridas = 4;
                     Controlador.dias_restantes--;
                     System.out.println("Ya paso un dias!!!!" + " " + Controlador.dias_restantes);
+                    PanelControl.setEstadisticaDiasRestantes(String.valueOf(Controlador.dias_restantes));
                 } else {
                     this.corridas--;
                     System.out.println("Las corridas que quedan " + this.corridas);
                 }
-                this.mutex.release();
+                this.mutex2.release();
                 Thread.sleep((this.dia)/4);
-                //this.mutex2.release();
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
