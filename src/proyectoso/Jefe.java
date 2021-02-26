@@ -15,7 +15,7 @@ public class Jefe extends Thread{
     private int dia;
     private int corridas = 4; //Uy si que sabroso, muchas corridas
 
-    public Jefe(Semaphore mutex, Semaphore mutex2, int dia) {
+    public Jefe(Semaphore mutex2, int dia) {
         this.mutex = mutex;
         this.mutex2 = mutex2;
         this.dia = dia;

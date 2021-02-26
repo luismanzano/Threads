@@ -40,6 +40,9 @@ public class Controlador {
     int max_ensamblador = e.getMax_ensambladores();
     Ensamblador ens [] = new Ensamblador[max_ensamblador];
     
+    Jefe jefe;
+    Gerente gerente;
+    
     //Variables de minimos y maximos 
     
         int inicial_pantallas;
@@ -214,8 +217,8 @@ public class Controlador {
             ens[i].start();
         }
         //coloco el jefe
-        Jefe jefe = new Jefe(mutex, mutex2, duracion_dias);
-        Gerente gerente = new Gerente(mutex, mutex2, duracion_dias);
+        Jefe jefe = new Jefe(mutex2, duracion_dias);
+        Gerente gerente = new Gerente(mutex2, duracion_dias);
         jefe.start();
         gerente.start();
     }
@@ -259,6 +262,8 @@ public class Controlador {
             
             ens[i].stop();
         }
+        jefe.stop();
+        gerente.stop();
         
     }
     

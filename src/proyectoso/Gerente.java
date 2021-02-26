@@ -14,7 +14,7 @@ public class Gerente extends Thread{
     Semaphore mutex2;
     private int dia;
     
-    Gerente(Semaphore mutex, Semaphore mutex2, int dia) {
+    Gerente(Semaphore mutex2, int dia) {
         this.mutex2 = mutex2;
         this.dia = dia;
     }
