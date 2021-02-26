@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Controlador {
     
-    public static volatile int contador_global;
+    public static volatile int contador_global = (LeerTxt.getDias()*4);
+    public static volatile int dias_restantes = LeerTxt.getDias();
    
     Productor_botones b = new Productor_botones();
     int max_botones = b.getMax_productores_botones();
@@ -39,7 +40,7 @@ public class Controlador {
     
     //Variables de minimos y maximos 
     
-      int inicial_pantallas;
+        int inicial_pantallas;
         int maximo_pantallas;
 
         int inicial_joysticks;
@@ -86,16 +87,6 @@ public class Controlador {
         Semaphore semEnsambladorSD = new Semaphore(Productor_SD.SD);
         
         inicializadorThreads(mutex, semBoton, semEnsambladorBoton, semPantallas,semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semJoysticks, semEnsambladorJoysticks, semSD, semEnsambladorSD);
-
-    }
-        
-     private void inicializadorThreads(Semaphore mutex, Semaphore semBoton, Semaphore semEnsambladorBoton, Semaphore semPantallas, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, Semaphore semSD, Semaphore semEnsambladorSD){            
-//        Productor_pantallas pantalla = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
-//        Productor_joysticks joystick = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
-//        Productor_SD sd = new Productor_SD(mutex, semSD, semEnsambladorSD);
-//        pantalla.start();
-//        joystick.start();
-//        sd.start();
 
         int inicial_pantallas;
         int maximo_pantallas;
@@ -147,6 +138,10 @@ public class Controlador {
         PanelControl.setEstadisticasProductorPantallas(String.valueOf(Productor_pantallas.productores_pantallas));
         PanelControl.setEstadisticasProductorSD(String.valueOf(Productor_SD.productores_SD));
                  
+    }
+        
+     private void inicializadorThreads(Semaphore mutex, Semaphore semBoton, Semaphore semEnsambladorBoton, Semaphore semPantallas, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, Semaphore semSD, Semaphore semEnsambladorSD){            
+
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
             
@@ -190,6 +185,8 @@ public class Controlador {
         }
         
     }
+     
+     /* Metodo para detener la simulacion */
     
     public void controlDetener() {
         
@@ -230,6 +227,8 @@ public class Controlador {
         }
         
     }
+    
+    /* Metodos para contratar y despedir*/
     
     public void contratarP_botones(){
         if(Productor_botones.productores_botones >= b.getMax_productores_botones()){

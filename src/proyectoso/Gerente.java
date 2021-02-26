@@ -11,5 +11,5 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Gerente extends Thread{
-    Semaphore mutex;
+    Semaphore mutex2;
 }

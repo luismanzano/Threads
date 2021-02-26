@@ -11,6 +11,21 @@ import java.util.concurrent.Semaphore;
  * @author leonp
  */
 public class Jefe extends Thread{
-    Semaphore mutex;
+    Semaphore mutex2;
+    
+    
+    public void run(){
+        while (true){
+            try {
+                Thread.sleep(LeerTxt.getMsDias()/4); // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
+                this.mutex2.acquire();
+                Controlador.contador_global --;
+                this.mutex2.release();
+                
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
     
 }
