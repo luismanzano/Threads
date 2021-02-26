@@ -711,6 +711,22 @@ public class PanelControl extends javax.swing.JFrame {
     }
     
    
+    public static void setEstadisticasProductorBotones(String valor){
+        cantProductorBotones.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorPantallas(String valor){
+        cantProductorPantalla.setText(valor);
+        cantProductorPTactil.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorJoysticks(String valor){
+        cantProductorJoystick.setText(valor);
+    }
+    
+    public static void setEstadisticasProductorSD(String valor){
+        cantProductorSD.setText(valor);
+    }
     
     public static void main(String args[]) {
          

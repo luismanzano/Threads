@@ -15,7 +15,7 @@ public class Productor_botones extends Thread {
     public static volatile int almacen_botones = 45; // Capacidad máx de almacenamiento
     public static volatile int botones = 0;
     public static volatile int productores_botones = 2; // Valor inicial, se debe poder indicar de manera dinamica
-    private final int max_productores_botones  = 3;
+    public static int max_productores_botones  = 3;
     
     public Productor_botones(Semaphore mutex, Semaphore semBoton, Semaphore semEnsamblador){ // Constructor
         this.mutex = mutex;
@@ -88,9 +88,9 @@ public class Productor_botones extends Thread {
 //        return productores_botones;
 //    }
 //    
-//    public void setProductores_botones(int productores_botones){
-//        this.productores_botones = productores_botones;
-//    }
+    public void setProductores_botones(int productores_botones){
+        this.productores_botones = productores_botones;
+    }
 //
 //    public int getBotones() {
 //        return botones;
