@@ -178,7 +178,7 @@ public class Controlador {
          
         for (int i = 0; i < Productor_botones.productores_botones; i++) {
             
-            boton[i] = new Productor_botones(mutex, semBoton, semEnsambladorBoton);
+            boton[i] = new Productor_botones(mutex, semBoton, semEnsambladorBoton, duracion_dias);
             boton[i].start();
             System.out.println("THREAD BOTON" + (i+1));    
         }
@@ -187,7 +187,7 @@ public class Controlador {
          
         for (int i = 0; i < Productor_pantallas.productores_pantallas; i++) {
             
-            pantalla[i] = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil);
+            pantalla[i] = new Productor_pantallas(mutex, semPantallas, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, duracion_dias);
             pantalla[i].start();
                 
         }
@@ -196,7 +196,7 @@ public class Controlador {
 
         for (int i = 0; i < Productor_joysticks.productores_joysticks; i++) {
 
-            joysticks[i] = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks);
+            joysticks[i] = new Productor_joysticks(mutex, semJoysticks, semEnsambladorJoysticks, duracion_dias);
             joysticks[i].start();
 
         }
@@ -205,7 +205,7 @@ public class Controlador {
          
         for (int i = 0; i < Productor_SD.productores_SD; i++) {
             
-            SD[i] = new Productor_SD(mutex, semSD, semEnsambladorSD);
+            SD[i] = new Productor_SD(mutex, semSD, semEnsambladorSD, duracion_dias);
             SD[i].start();
                 
         }
@@ -213,7 +213,7 @@ public class Controlador {
         
         for (int i = 0; i < Ensamblador.ensambladores; i++) {
             
-            ens[i]= new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD); 
+            ens[i]= new Ensamblador(mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD, semBoton, semPantallas, semJoysticks, semSD, duracion_dias); 
             ens[i].start();
         }
         //coloco el jefe

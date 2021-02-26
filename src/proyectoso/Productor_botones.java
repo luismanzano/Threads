@@ -16,11 +16,13 @@ public class Productor_botones extends Thread {
     public static volatile int botones = 0;
     public static volatile int productores_botones = 2; // Valor inicial, se debe poder indicar de manera dinamica
     public static volatile int max_productores_botones  = 3;
+    public static int duracion_dia;
     
-    public Productor_botones(Semaphore mutex, Semaphore semBoton, Semaphore semEnsamblador){ // Constructor
+    public Productor_botones(Semaphore mutex, Semaphore semBoton, Semaphore semEnsamblador, int duracion_dia){ // Constructor
         this.mutex = mutex;
         this.semBoton = semBoton;
         this.semEnsamblarBoton = semEnsamblador;
+        this.duracion_dia = duracion_dia;
     }
 
     public Productor_botones() {
@@ -45,7 +47,7 @@ public class Productor_botones extends Thread {
                         this.semEnsamblarBoton.release(2);
                     }else if (almacen_botones > 0){
                         this.semBoton.acquire();
-                        Thread.sleep(1000);
+                        Thread.sleep(this.duracion_dia);
                         this.mutex.acquire();
                         almacen_botones --;
                         botones++;
@@ -55,7 +57,7 @@ public class Productor_botones extends Thread {
                     }
                     
                 }
-            Thread.sleep(1000);
+            Thread.sleep(this.duracion_dia);
             } catch (InterruptedException e) {
                 System.out.println(e);
             }

@@ -14,6 +14,7 @@ public class Ensamblador extends Thread {
     //COLOCAMOS TODOS LOS SEMAFOROS
     Semaphore mutex, semEnsambladorBoton, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil, semEnsambladorJoysticks, semEnsambladorSD;
     Semaphore semBoton, semPantallas, semJoysticks, semSD;
+    int duracion_dia;
     
     
     public static volatile int consolas_listas = 0;
@@ -39,7 +40,7 @@ public class Ensamblador extends Thread {
     
 
     public Ensamblador(Semaphore mutex, Semaphore semEnsambladorBoton, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, Semaphore semEnsambladorJoysticks, Semaphore semEnsambladorSD,
-                       Semaphore semBoton, Semaphore semPantallas, Semaphore semJoysticks, Semaphore semSD) {
+                       Semaphore semBoton, Semaphore semPantallas, Semaphore semJoysticks, Semaphore semSD, int duracion_dia) {
     this.mutex = mutex;
     this.semEnsambladorBoton = semEnsambladorBoton;
     this.semEnsambladorPantallaNormal = semEnsambladorPantallaNormal;
@@ -50,6 +51,7 @@ public class Ensamblador extends Thread {
     this.semPantallas = semPantallas;
     this.semJoysticks = semJoysticks;
     this.semSD = semSD;
+    this.duracion_dia = duracion_dia;
     }
 
     public Ensamblador() {
@@ -138,11 +140,11 @@ public class Ensamblador extends Thread {
                 this.consolas_listas += 1;
                 PanelControl.setEstadisticaConsolas(Integer.toString(this.consolas_listas));
                 System.out.println("Actualizado");
-                Thread.sleep(1000);
+                Thread.sleep(this.duracion_dia);
             } else {
             
             }
-                Thread.sleep(1000);
+                Thread.sleep(this.duracion_dia);
                 }
                
                

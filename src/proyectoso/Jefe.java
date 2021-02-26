@@ -28,6 +28,8 @@ public class Jefe extends Thread{
             try {
                 // Duerme 1/4 de lo que dura el dia para que la unidad valga 6 horas
                 this.mutex2.acquire();
+                PanelControl.setStatusGerente("Dormido");
+                PanelControl.setStatusJefe("Despierto");
                 Controlador.contador_global --;
                 if (this.corridas==0) {
                     this.corridas = 4;
@@ -38,6 +40,7 @@ public class Jefe extends Thread{
                     this.corridas--;
                     System.out.println("Las corridas que quedan " + this.corridas);
                 }
+               // PanelControl.setStatusJefe("Dormido");
                 this.mutex2.release();
                 Thread.sleep((this.dia)/4);
             } catch (InterruptedException e) {

@@ -17,12 +17,14 @@ public class Productor_pantallas extends Thread {
     public static volatile int pantallas_tactiles = 0; 
     public static volatile int productores_pantallas = 3;
     public static volatile int max_productores_pantallas = 5;
+    public static volatile int duracion_dia;
 
-    public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil) {
+    public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, int duracion_dia) {
     this.mutex = mutex; 
     this.semPantalla = semPantalla;
     this.semEnsambladorPantallaNormal = semEnsambladorPantallaNormal;
     this.semEnsambladorPantallaTactil = semEnsambladorPantallaTactil;
+    this.duracion_dia = duracion_dia;
     }
 
     public Productor_pantallas() {
@@ -36,7 +38,7 @@ public class Productor_pantallas extends Thread {
                 //Pantalla normal
                 this.semPantalla.acquire();
                 if(almacen_pantallas > 0){
-                Thread.sleep(1000);
+                Thread.sleep(this.duracion_dia);
                 this.mutex.acquire();
                 almacen_pantallas --;
                 pantallas_normales ++;
@@ -47,7 +49,7 @@ public class Productor_pantallas extends Thread {
                 //Pantalla tactil
                 this.semPantalla.acquire();
                 if(almacen_pantallas > 0){
-                Thread.sleep(2000);
+                Thread.sleep(this.duracion_dia);
                 this.mutex.acquire();
                 almacen_pantallas --;
                 pantallas_tactiles ++;

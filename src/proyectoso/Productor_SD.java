@@ -16,11 +16,13 @@ public class Productor_SD extends Thread {
     public static volatile int productores_SD = 2;
     public static volatile int SD = 0;
     public static volatile int max_productores_SD = 4;
+    public static volatile int duracion_dia;
     
-    public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD ) {
+    public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD, int duracion_dia ) {
     this.mutex = mutex;
     this.semSD = semSD;
     this.semEnsambladorSD = semEnsambladorSD;
+    this.duracion_dia = duracion_dia;
     }
 
     public Productor_SD() {
@@ -33,7 +35,7 @@ public class Productor_SD extends Thread {
             try {
                 this.semSD.acquire();
                 if(almacen_SD > 0){
-                    Thread.sleep(3000);
+                    Thread.sleep(this.duracion_dia*3);
                     this.mutex.acquire();
                     SD ++;
                     almacen_SD --;

@@ -688,6 +688,14 @@ public class PanelControl extends javax.swing.JFrame {
         almacenBoton.setText(almacen);
     }
     
+    public static void setStatusJefe(String string){
+        statusJefeText.setText(string);
+    }
+    
+    public static void setStatusGerente(String string){
+        statusGerenteText.setText(string);
+    }
+    
     public static void setEstadisticaPantallaNormal(String pantalla_normal , String almacen){
         cantPantallasText.setText(pantalla_normal);
         almacenPantalla.setText(almacen);

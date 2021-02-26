@@ -16,11 +16,13 @@ public class Productor_joysticks extends Thread{
     public static volatile int productores_joysticks = 2;
     public static volatile int joysticks = 0;
     public static volatile int max_productores_joysticks = 4;
+    public static volatile int duracion_dia;
 
-    public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks) {
+    public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, int duracion_dia) {
     this.mutex = mutex;
     this.semJoysticks = semJoysticks;
     this.semEnsambladorJoysticks = semEnsambladorJoysticks;
+    this.duracion_dia= duracion_dia;
     }
 
     public Productor_joysticks() {
@@ -33,7 +35,7 @@ public class Productor_joysticks extends Thread{
             try {
                 this.semJoysticks.acquire();
                 if(almacen_joysticks > 0){
-                Thread.sleep(2000);
+                Thread.sleep(duracion_dia*2);
                 this.mutex.acquire();
                 almacen_joysticks --;
                 joysticks ++;
