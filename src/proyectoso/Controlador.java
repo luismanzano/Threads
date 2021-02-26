@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Controlador {
     
-    public static volatile int contador_global = (LeerTxt.getDias()*4);
-    public static volatile int dias_restantes = LeerTxt.getDias();
+    public static volatile int contador_global;
+    public static volatile int dias_restantes;
    
     Productor_botones b = new Productor_botones();
     int max_botones = b.getMax_productores_botones();
@@ -100,6 +100,14 @@ public class Controlador {
         int inicial_SD;
         int maximo_SD;
         
+        int cantidad_dias;
+        int duracion_dias;
+        
+        int almacen_pantallas;
+        int almacen_joysticks;
+        int almacen_botones;
+        int almacen_SD;
+        
         LeerTxt lectorVariables = new LeerTxt();
         //COMO PUEDE HABER UNA EXCEPCION DE FILE NOT FOUND , PRIMERO HACES UN TRY 
         try{
@@ -126,6 +134,16 @@ public class Controlador {
             maximo_SD = lectorVariables.getInicial_pantallas();
             Productor_SD.max_productores_SD = maximo_SD;
             
+            cantidad_dias = lectorVariables.getCantidad_dias();
+            duracion_dias = lectorVariables.getDuracion_dias();
+            
+            almacen_pantallas = lectorVariables.getAlmacen_pantallas();
+            almacen_joysticks = lectorVariables.getAlmacen_joysticks();
+            almacen_botones = lectorVariables.getAlmacen_botones();
+            almacen_SD = lectorVariables.getAlmacen_SD();
+            
+            contador_global = duracion_dias*4;
+            dias_restantes = cantidad_dias;
             
             
         } catch(Exception e) {

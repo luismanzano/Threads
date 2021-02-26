@@ -26,6 +26,14 @@ public class LeerTxt {
     private int inicial_SD;
     private int maximo_SD;
     
+    private int cantidad_dias;
+    private int duracion_dias;
+    
+    private int almacen_pantallas;
+    private int almacen_joysticks;
+    private int almacen_botones;
+    private int almacen_SD;
+    
     
     public void leer_variables() throws FileNotFoundException{
         File file = new File("variables.txt");
@@ -40,7 +48,7 @@ public class LeerTxt {
                valores.add(sc.nextLine());
            }
             
-            for (int i = 0; i <=7; i++) {
+            for (int i = 0; i <=13; i++) {
                 System.out.println("Linea "+i+ " valor del arreglo " + valores.get(i));
                 switch(i){
                     //Colocando las variables del productor de pantlalas 
@@ -55,9 +63,20 @@ public class LeerTxt {
                     case 4: this.setInicial_botones(Integer.parseInt(valores.get(i)));
                     case 5: this.setMaximo_botones(Integer.parseInt(valores.get(i)));
                     
-                    //Colocando las variables del productor de pantlalas 
+                     //Colocando las variable de duarcion de dia y cantidad de dias
                     case 6: this.setInicial_SD(Integer.parseInt(valores.get(i)));
                     case 7: this.setMaximo_SD(Integer.parseInt(valores.get(i)));
+                    
+                    //Colocando las variables del productor de pantlalas 
+                    case 8: this.setCantidad_dias(Integer.parseInt(valores.get(i)));
+                    case 9: this.setDuracion_dias(Integer.parseInt(valores.get(i))*1000);
+                    
+                    
+                     //Variables de los almacenes
+                    case 10: this.setAlmacen_pantallas(Integer.parseInt(valores.get(i)));
+                    case 11: this.setAlmacen_joysticks(Integer.parseInt(valores.get(i)));
+                    case 12: this.setAlmacen_botones(Integer.parseInt(valores.get(i)));
+                    case 13: this.setAlmacen_SD(Integer.parseInt(valores.get(i)));
                 }
             }
   
@@ -139,6 +158,55 @@ public class LeerTxt {
     public void setMaximo_SD(int maximo_SD) {
         this.maximo_SD = maximo_SD;
     }
+
+    public int getCantidad_dias() {
+        return cantidad_dias;
+    }
+
+    public void setCantidad_dias(int cantidad_dias) {
+        this.cantidad_dias = cantidad_dias;
+    }
+
+    public int getDuracion_dias() {
+        return duracion_dias;
+    }
+
+    public void setDuracion_dias(int duracion_dias) {
+        this.duracion_dias = duracion_dias;
+    }
+
+    public int getAlmacen_pantallas() {
+        return almacen_pantallas;
+    }
+
+    public void setAlmacen_pantallas(int almacen_pantallas) {
+        this.almacen_pantallas = almacen_pantallas;
+    }
+
+    public int getAlmacen_joysticks() {
+        return almacen_joysticks;
+    }
+
+    public void setAlmacen_joysticks(int almacen_joysticks) {
+        this.almacen_joysticks = almacen_joysticks;
+    }
+
+    public int getAlmacen_botones() {
+        return almacen_botones;
+    }
+
+    public void setAlmacen_botones(int almacen_botones) {
+        this.almacen_botones = almacen_botones;
+    }
+
+    public int getAlmacen_SD() {
+        return almacen_SD;
+    }
+
+    public void setAlmacen_SD(int almacen_SD) {
+        this.almacen_SD = almacen_SD;
+    }
+    
     
     
     
