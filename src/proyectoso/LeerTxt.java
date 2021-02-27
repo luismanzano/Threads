@@ -53,22 +53,38 @@ public class LeerTxt {
                 switch(i){
                     //Colocando las variables del productor de pantlalas 
                     case 0: this.setInicial_pantallas(Integer.parseInt(valores.get(i)));
+                        System.out.println("inicial pantallas"+getInicial_pantallas());
+                        break;
                     case 1: this.setMaximo_pantallas(Integer.parseInt(valores.get(i)));
-                    
+                        System.out.println("maximo pantallas"+getMaximo_pantallas());
+                        break;
                     //Colocando las variables del productor de pantlalas 
                     case 2: this.setInicial_joysticks(Integer.parseInt(valores.get(i)));
+                    System.out.println("inicial joysticks"+getInicial_joysticks());
+                        break;
                     case 3: this.setMaximo_joysticks(Integer.parseInt(valores.get(i)));
+                    System.out.println("maximo joysticks"+getMaximo_joysticks());
+                        break;
                     
                     //Colocando las variables del productor de pantlalas 
                     case 4: this.setInicial_botones(Integer.parseInt(valores.get(i)));
+                    System.out.println("inicial botones"+getInicial_botones());
+                        break;
                     case 5: this.setMaximo_botones(Integer.parseInt(valores.get(i)));
-                    
+                        System.out.println("maximo botones"+getMaximo_botones());
+                        break;
                      //Colocando las variable de duarcion de dia y cantidad de dias
                     case 6: this.setInicial_SD(Integer.parseInt(valores.get(i)));
+                        System.out.println("Inicial SD"+getInicial_SD());
+                        break;
                     case 7: this.setMaximo_SD(Integer.parseInt(valores.get(i)));
+                        System.out.println("maximo SD"+getMaximo_SD());
+                        break;
                     
                     //Colocando las variables del productor de pantlalas 
                     case 8: this.setCantidad_dias(Integer.parseInt(valores.get(i)));
+                        System.out.println("Cantidad dias dias"+getCantidad_dias());
+                        break;
                     case 9: this.setDuracion_dias(Integer.parseInt(valores.get(i))*1000);
                     
                     
