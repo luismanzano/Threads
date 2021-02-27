@@ -12,10 +12,10 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_botones extends Thread {
     Semaphore mutex, semBoton, semEnsamblarBoton;
-    public static volatile int almacen_botones = 45; // Capacidad máx de almacenamiento
+    public static volatile int almacen_botones; // Capacidad máx de almacenamiento
     public static volatile int botones = 0;
-    public static volatile int productores_botones ; // Valor inicial, se debe poder indicar de manera dinamica
-    public static volatile int max_productores_botones = 3;
+    public static volatile int productores_botones; // Valor inicial, se debe poder indicar de manera dinamica
+    public static volatile int max_productores_botones;
     public static int duracion_dia;
     
     public Productor_botones(Semaphore mutex, Semaphore semBoton, Semaphore semEnsamblador, int duracion_dia){ // Constructor

@@ -20,25 +20,25 @@ public class Controlador {
     public static volatile int duracion_dias;
     public static volatile int ciclo_dias;
    
-    Productor_botones b = new Productor_botones();
-    int max_botones = b.getMax_productores_botones();
-    Productor_botones boton [] = new Productor_botones[max_botones];
+//    Productor_botones b = new Productor_botones();
+//    int max_botones = b.getMax_productores_botones();
+    Productor_botones boton [] ;
     
-    Productor_pantallas p = new Productor_pantallas();
-    int max_pantallas = p.getMax_productores_pantallas();
-    Productor_pantallas pantalla [] = new Productor_pantallas[max_pantallas];
+//    Productor_pantallas p = new Productor_pantallas();
+//    int max_pantallas = p.getMax_productores_pantallas();
+    Productor_pantallas pantalla [];
     
-    Productor_joysticks j = new Productor_joysticks();
-    int max_joysticks = j.getMax_productores_joysticks();
-    Productor_joysticks joysticks [] = new Productor_joysticks[max_joysticks];
+//    Productor_joysticks j = new Productor_joysticks();
+//    int max_joysticks = j.getMax_productores_joysticks();
+    Productor_joysticks joysticks [];
     
-    Productor_SD s = new Productor_SD();
-    int max_SD = s.getMax_productores_SD();
-    Productor_SD SD [] = new Productor_SD[max_SD];
+//    Productor_SD s = new Productor_SD();
+//    int max_SD = s.getMax_productores_SD();
+    Productor_SD SD [];
     
-    Ensamblador e = new Ensamblador();
-    int max_ensamblador = e.getMax_ensambladores();
-    Ensamblador ens [] = new Ensamblador[max_ensamblador];
+//    Ensamblador e = new Ensamblador();
+//    int max_ensamblador = e.getMax_ensambladores();
+    Ensamblador ens [];
     
    Jefe jefe;
    Gerente gerente;
@@ -146,6 +146,11 @@ public class Controlador {
         Semaphore semSD = new Semaphore(almacen_SD);
         Semaphore semEnsambladorSD = new Semaphore(0);
         
+        boton = new Productor_botones[Productor_botones.max_productores_botones];
+        pantalla = new Productor_pantallas[Productor_pantallas.max_productores_pantallas];
+        joysticks = new Productor_joysticks[Productor_joysticks.max_productores_joysticks];
+        SD = new Productor_SD[Productor_SD.max_productores_SD];
+        ens = new Ensamblador[Ensamblador.max_ensambladores];
         //colocando las varibales de las otras clases segun el txt
         
         
@@ -272,7 +277,7 @@ public class Controlador {
     /* Metodos para contratar y despedir*/
     
     public void contratarP_botones(){
-        if(Productor_botones.productores_botones >= b.getMax_productores_botones()){
+        if(Productor_botones.productores_botones >= Productor_botones.max_productores_botones){
             JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de botones alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }else{
             Productor_botones.productores_botones ++;
@@ -288,7 +293,7 @@ public class Controlador {
     }
     
     public void contratarP_pantallas(){
-        if(Productor_pantallas.productores_pantallas >= p.getMax_productores_pantallas()){
+        if(Productor_pantallas.productores_pantallas >= Productor_pantallas.max_productores_pantallas){
             JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de pantallas alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }else{
             Productor_pantallas.productores_pantallas ++;
@@ -304,7 +309,7 @@ public class Controlador {
     }
     
     public void contratarP_joysticks(){
-        if(Productor_joysticks.productores_joysticks >= j.getMax_productores_joysticks()){
+        if(Productor_joysticks.productores_joysticks >= Productor_joysticks.max_productores_joysticks){
             JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de joysticks alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }else{
             Productor_joysticks.productores_joysticks ++;
@@ -320,7 +325,7 @@ public class Controlador {
     }
     
     public void contratarP_SD(){
-        if(Productor_SD.productores_SD >= s.getMax_productores_SD()){
+        if(Productor_SD.productores_SD >= Productor_SD.max_productores_SD ){
             JOptionPane.showMessageDialog(null, "Cantidad máxima de producotres de tarjetas SD alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }else{
             Productor_SD.productores_SD ++;
@@ -336,7 +341,7 @@ public class Controlador {
     }
     
     public void contratarEnsamblador(){
-        if(Ensamblador.ensambladores >= e.getMax_ensambladores()){
+        if(Ensamblador.ensambladores >= Ensamblador.max_ensambladores){
             JOptionPane.showMessageDialog(null, "Cantidad máxima de ensambladores alcanzada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }else{
             Ensamblador.ensambladores ++;

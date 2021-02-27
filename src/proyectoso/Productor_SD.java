@@ -12,10 +12,10 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_SD extends Thread {
     Semaphore mutex, semSD, semEnsambladorSD;
-    public static volatile int almacen_SD = 15;
-    public static volatile int productores_SD = 2;
+    public static volatile int almacen_SD;
+    public static volatile int productores_SD;
     public static volatile int SD = 0;
-    public static volatile int max_productores_SD = 4;
+    public static volatile int max_productores_SD;
     public static volatile int duracion_dia;
     
     public Productor_SD(Semaphore mutex, Semaphore semSD, Semaphore semEnsambladorSD, int duracion_dia ) {

@@ -18,8 +18,8 @@ public class Ensamblador extends Thread {
     
     
     public static volatile int consolas_listas = 0;
-    public static volatile int ensambladores = 1;
-    private final int max_ensambladores = 5;
+    public static volatile int ensambladores = 2;
+    public static volatile int max_ensambladores = 6;
     
     //COLOCAMOS LOS PRODUCTORES PARA PODER ACCESAR A ELLOS
     

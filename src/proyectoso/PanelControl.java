@@ -68,8 +68,6 @@ public class PanelControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        duracionDia = new javax.swing.JSpinner();
-        jTextField1 = new javax.swing.JTextField();
         startProgram = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -117,15 +115,9 @@ public class PanelControl extends javax.swing.JFrame {
         masEnsambladores = new javax.swing.JButton();
         menosEnsambladores = new javax.swing.JButton();
         reanudarPrograma = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("Duracion del dia (ms)");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         startProgram.setText("Iniciar");
         startProgram.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +295,9 @@ public class PanelControl extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setText("SIMULACIÓN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,21 +354,16 @@ public class PanelControl extends javax.swing.JFrame {
                                 .addGap(60, 60, 60))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(startProgram)
+                                .addGap(32, 32, 32)
+                                .addComponent(reanudarPrograma)
+                                .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(25, 25, 25))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(startProgram)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(reanudarPrograma)
-                                        .addGap(36, 36, 36)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(diasLanzamientoText)
-                                            .addComponent(jLabel7)))
+                                            .addComponent(jLabel7))
+                                        .addGap(4, 4, 4))
                                     .addComponent(stopProgram, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(30, 30, 30)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,18 +403,21 @@ public class PanelControl extends javax.swing.JFrame {
                         .addComponent(statusGerenteText)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(333, 333, 333)
-                .addComponent(jLabel13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(333, 333, 333)
+                        .addComponent(jLabel13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(duracionDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startProgram)
                     .addComponent(stopProgram)
@@ -518,10 +511,6 @@ public class PanelControl extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void startProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startProgramActionPerformed
                         // TODO add your handling code here:
                 startProgram.setEnabled(false);
@@ -529,28 +518,28 @@ public class PanelControl extends javax.swing.JFrame {
                 
                 statusJefeText.setText("Durmiendo");
                 statusGerenteText.setText("Activo");
-                
-                cantProductorBotones.setText(Integer.toString(cant_productores_boton));
-                cantBotonesText.setText(Integer.toString(cant_botones));
-                almacenBoton.setText(Integer.toString(almacen_botones));
-                
-                cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));
-                cantProductorPTactil.setText(Integer.toString(cant_prouctores_pantallas));
-                cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
-                cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
-                almacenPantalla.setText(Integer.toString(almacen_pantallas));
-                almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
-                
-                cantJoystickText.setText(Integer.toString(cant_joysticks));
-                cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
-                almacenJoystick.setText(Integer.toString(almacen_joysticks));
-                
-                cantSDText.setText(Integer.toString(cant_sd));
-                cantProductorSD.setText(Integer.toString(cant_productores_sd));
-                almacenSD.setText(Integer.toString(almacen_sd));
-                
-                cantEnsambladorText.setText(Integer.toHexString(cant_ensambladores));
-                consolasTerminadasText.setText(Integer.toString(cant_consolas));
+//                
+//                cantProductorBotones.setText(Integer.toString(cant_productores_boton));
+//                cantBotonesText.setText(Integer.toString(cant_botones));
+//                almacenBoton.setText(Integer.toString(almacen_botones));
+//                
+//                cantProductorPantalla.setText(Integer.toString(cant_prouctores_pantallas));
+//                cantProductorPTactil.setText(Integer.toString(cant_prouctores_pantallas));
+//                cantPantallasText.setText(Integer.toString(cant_pantallas_normales));
+//                cantPTactilText.setText(Integer.toString(cant_pantallas_tactiles));
+//                almacenPantalla.setText(Integer.toString(almacen_pantallas));
+//                almacenPantallaTactil.setText(Integer.toString(almacen_pantallas));
+//                
+//                cantJoystickText.setText(Integer.toString(cant_joysticks));
+//                cantProductorJoystick.setText(Integer.toString(cant_productores_joysticks));
+//                almacenJoystick.setText(Integer.toString(almacen_joysticks));
+//                
+//                cantSDText.setText(Integer.toString(cant_sd));
+//                cantProductorSD.setText(Integer.toString(cant_productores_sd));
+//                almacenSD.setText(Integer.toString(almacen_sd));
+//                
+//                cantEnsambladorText.setText(Integer.toHexString(cant_ensambladores));
+//                consolasTerminadasText.setText(Integer.toString(cant_consolas));
                 
                 control.controlInicio();
     }//GEN-LAST:event_startProgramActionPerformed
@@ -796,13 +785,13 @@ public class PanelControl extends javax.swing.JFrame {
     private static javax.swing.JLabel cantSDText;
     private static javax.swing.JLabel consolasTerminadasText;
     private static javax.swing.JLabel diasLanzamientoText;
-    private javax.swing.JSpinner duracionDia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -811,7 +800,6 @@ public class PanelControl extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton masEnsambladores;
     private javax.swing.JButton masP_SD;
     private javax.swing.JButton masP_botones;

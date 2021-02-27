@@ -12,10 +12,10 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_joysticks extends Thread{
     Semaphore mutex, semJoysticks, semEnsambladorJoysticks;
-    public static volatile int almacen_joysticks = 20;
-    public static volatile int productores_joysticks = 2;
+    public static volatile int almacen_joysticks;
+    public static volatile int productores_joysticks;
     public static volatile int joysticks = 0;
-    public static volatile int max_productores_joysticks = 4;
+    public static volatile int max_productores_joysticks;
     public static volatile int duracion_dia;
 
     public Productor_joysticks(Semaphore mutex, Semaphore semJoysticks, Semaphore semEnsambladorJoysticks, int duracion_dia) {

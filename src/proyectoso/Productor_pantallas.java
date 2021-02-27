@@ -12,11 +12,11 @@ import java.util.concurrent.Semaphore;
  */
 public class Productor_pantallas extends Thread {
     Semaphore mutex, semPantalla, semEnsambladorPantallaNormal, semEnsambladorPantallaTactil;
-    public static volatile int almacen_pantallas = 40;
+    public static volatile int almacen_pantallas;
     public static volatile int pantallas_normales = 0;
     public static volatile int pantallas_tactiles = 0; 
-    public static volatile int productores_pantallas = 3;
-    public static volatile int max_productores_pantallas = 5;
+    public static volatile int productores_pantallas;
+    public static volatile int max_productores_pantallas;
     public static volatile int duracion_dia;
 
     public Productor_pantallas(Semaphore mutex, Semaphore semPantalla, Semaphore semEnsambladorPantallaNormal, Semaphore semEnsambladorPantallaTactil, int duracion_dia) {
