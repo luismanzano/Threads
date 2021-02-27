@@ -217,8 +217,8 @@ public class Controlador {
             ens[i].start();
         }
         //coloco el jefe
-        Jefe jefe = new Jefe(mutex2, duracion_dias);
-        Gerente gerente = new Gerente(mutex2, duracion_dias);
+        jefe = new Jefe(mutex2, duracion_dias);
+        gerente = new Gerente(mutex2, duracion_dias);
         jefe.start();
         gerente.start();
     }
