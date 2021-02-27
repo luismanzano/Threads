@@ -40,8 +40,8 @@ public class Controlador {
     int max_ensamblador = e.getMax_ensambladores();
     Ensamblador ens [] = new Ensamblador[max_ensamblador];
     
-    Jefe jefe;
-    Gerente gerente;
+   Jefe jefe;
+   Gerente gerente;
     
     //Variables de minimos y maximos 
     
@@ -77,23 +77,25 @@ public class Controlador {
             inicial_pantallas = lectorVariables.getInicial_pantallas();
             Productor_pantallas.productores_pantallas = inicial_pantallas;
             
-            maximo_pantallas = lectorVariables.getInicial_pantallas();
+            maximo_pantallas = lectorVariables.getMaximo_pantallas();
             Productor_pantallas.max_productores_pantallas = maximo_pantallas;
             
-            inicial_joysticks = lectorVariables.getInicial_pantallas();
+            inicial_joysticks = lectorVariables.getInicial_joysticks();
             Productor_joysticks.productores_joysticks = inicial_joysticks;
-            maximo_joysticks = lectorVariables.getInicial_pantallas();
+            maximo_joysticks = lectorVariables.getMaximo_joysticks();
             Productor_joysticks.max_productores_joysticks = maximo_joysticks;
             
-            inicial_botones = lectorVariables.getInicial_pantallas();
+            inicial_botones = lectorVariables.getInicial_botones();
             Productor_botones.productores_botones = inicial_botones;
-            maximo_botones = lectorVariables.getInicial_pantallas();
+            maximo_botones = lectorVariables.getMaximo_botones();
             Productor_botones.max_productores_botones = maximo_botones;
             
-            inicial_SD = lectorVariables.getInicial_pantallas();
+            inicial_SD = lectorVariables.getInicial_SD();
             Productor_SD.productores_SD = inicial_SD;
-            maximo_SD = lectorVariables.getInicial_pantallas();
+            maximo_SD = lectorVariables.getMaximo_SD();
             Productor_SD.max_productores_SD = maximo_SD;
+            System.out.println("El maximo de SD es" +maximo_SD);
+            System.out.println("Maximo pasado al Sd es "+Productor_SD.max_productores_SD);
             
             cantidad_dias = lectorVariables.getCantidad_dias();
             duracion_dias = lectorVariables.getDuracion_dias();
@@ -107,13 +109,13 @@ public class Controlador {
             Productor_pantallas.almacen_pantallas = almacen_pantallas;
             System.out.println("Almacen pantallas " + Productor_pantallas.almacen_pantallas);
             
-            Productor_joysticks.almacen_joysticks = almacen_pantallas;
+            Productor_joysticks.almacen_joysticks = almacen_joysticks;
             System.out.println("Almacen  Joysticks " + Productor_joysticks.almacen_joysticks);
             
-            Productor_botones.almacen_botones = almacen_pantallas;
+            Productor_botones.almacen_botones = almacen_botones;
             System.out.println("Almacen botones " + Productor_botones.almacen_botones);
             
-            Productor_SD.almacen_SD = almacen_pantallas;
+            Productor_SD.almacen_SD = almacen_SD;
             System.out.println("Almacen pantallas SD " + Productor_SD.almacen_SD);
             
             //aqui estan las variables para que funcionen jefe y gerente
@@ -218,7 +220,7 @@ public class Controlador {
         }
         //coloco el jefe
         jefe = new Jefe(mutex2, duracion_dias);
-        gerente = new Gerente(mutex2, duracion_dias);
+        gerente= new Gerente(mutex2, duracion_dias);
         jefe.start();
         gerente.start();
     }
