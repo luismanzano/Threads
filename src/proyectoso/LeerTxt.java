@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,47 +53,247 @@ public class LeerTxt {
                 System.out.println("Linea "+i+ " valor del arreglo " + valores.get(i));
                 switch(i){
                     //Colocando las variables del productor de pantlalas 
-                    case 0: this.setInicial_pantallas(Integer.parseInt(valores.get(i)));
+                    case 0: try{
+                        this.setInicial_pantallas(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setInicial_pantallas(1);
+                    }
+                        
+                        if (this.getInicial_pantallas() < 0) {
+                            JOptionPane.showMessageDialog(null, "El minimo de pantallas no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setInicial_pantallas(1);
+                        }
+                        
+                        
+                        
+                    
                         System.out.println("inicial pantallas"+getInicial_pantallas());
+                        
+                        
                         break;
-                    case 1: this.setMaximo_pantallas(Integer.parseInt(valores.get(i)));
+                    case 1: try{
+                        this.setMaximo_pantallas(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setMaximo_pantallas(1);
+                    }
+                        
+                        if (this.getMaximo_pantallas() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de pantallas no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setMaximo_pantallas(1);
+                        }
+                        
+                        if(getMaximo_pantallas() < getInicial_pantallas()){
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_pantallas((this.getInicial_pantallas() + 1));
+                        }
+   
+                    
+                    
                         System.out.println("maximo pantallas"+getMaximo_pantallas());
                         break;
+                        
+                        
+                        
                     //Colocando las variables del productor de pantlalas 
-                    case 2: this.setInicial_joysticks(Integer.parseInt(valores.get(i)));
+                    case 2: try{
+                        this.setInicial_joysticks(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setInicial_joysticks(1);
+                    }
+                        
+                        if (this.getInicial_joysticks() < 0) {
+                            JOptionPane.showMessageDialog(null, "El minimo de joysticks no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setInicial_joysticks(1);
+                        }
+                    
+                    
+                    
                     System.out.println("inicial joysticks"+getInicial_joysticks());
                         break;
-                    case 3: this.setMaximo_joysticks(Integer.parseInt(valores.get(i)));
+                        
+                        
+                        
+                    case 3: try{
+                        this.setMaximo_joysticks(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setMaximo_joysticks(1);
+                    }
+                        
+                        if (this.getMaximo_joysticks() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de pantallas no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setMaximo_joysticks(1);
+                        }
+                        
+                        if(getMaximo_joysticks() < getInicial_joysticks()){
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_joysticks((this.getInicial_joysticks() + 1));
+                        }
+                    
+                    
                     System.out.println("maximo joysticks"+getMaximo_joysticks());
                         break;
                     
                     //Colocando las variables del productor de pantlalas 
-                    case 4: this.setInicial_botones(Integer.parseInt(valores.get(i)));
+                    case 4: try{
+                        this.setInicial_botones(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setInicial_botones(1);
+                    }
+                        
+                        if (this.getInicial_botones() < 0) {
+                            JOptionPane.showMessageDialog(null, "El minimo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setInicial_botones(1);
+                        }
+                    
+                    
+                    
                     System.out.println("inicial botones"+getInicial_botones());
                         break;
-                    case 5: this.setMaximo_botones(Integer.parseInt(valores.get(i)));
+                    case 5:try{
+                        this.setMaximo_botones(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setMaximo_botones(1);
+                    }
+                        
+                        if (this.getMaximo_botones() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setMaximo_botones(1);
+                        }
+                            if(getMaximo_botones() < getInicial_botones()){
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_botones((this.getInicial_botones() + 1));
+                        }
+                    
                         System.out.println("maximo botones"+getMaximo_botones());
                         break;
+                        
+                        
                      //Colocando las variable de duarcion de dia y cantidad de dias
-                    case 6: this.setInicial_SD(Integer.parseInt(valores.get(i)));
+                    case 6:try{
+                        this.setInicial_SD(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setInicial_SD(1);
+                    }
+                        
+                        if (this.getInicial_SD() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setInicial_SD(1);
+                        }
+                        
+                        
                         System.out.println("Inicial SD"+getInicial_SD());
                         break;
-                    case 7: this.setMaximo_SD(Integer.parseInt(valores.get(i)));
+                        
+                        
+                    case 7: try{
+                        this.setMaximo_SD(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setMaximo_SD(1);
+                    }
+                        
+                        if (this.getMaximo_SD() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setMaximo_SD(1);
+                        }
+                        
+                        if(getMaximo_SD() < getInicial_SD()){
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_SD((this.getInicial_SD() + 1));
+                        }
                         System.out.println("maximo SD"+getMaximo_SD());
                         break;
                     
                     //Colocando las variables del productor de pantlalas 
                     case 8: this.setCantidad_dias(Integer.parseInt(valores.get(i)));
+                        
+//                        try{
+//                        this.setCantidad_dias(Integer.parseInt(valores.get(i)));
+//                    } catch (Exception e){
+//                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+//                        this.setMaximo_SD(1);
+//                    }
+//                        
+//                        if (this.getCantidad_dias() < 0) {
+//                            JOptionPane.showMessageDialog(null, "los dias no pueden ser ngeativos", "Alerta", JOptionPane.ERROR_MESSAGE);
+//                            this.setCantidad_dias(1);
+//                        }
+                    
+                    
                         System.out.println("Cantidad dias dias"+getCantidad_dias());
                         break;
-                    case 9: this.setDuracion_dias(Integer.parseInt(valores.get(i))*1000);
+                    case 9: try{
+                        this.setDuracion_dias(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setDuracion_dias(1000);
+                    }
+                        
+                        if (this.getDuracion_dias() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setDuracion_dias(1000);
+                        }
+                    break;
                     
                     
                      //Variables de los almacenes
-                    case 10: this.setAlmacen_pantallas(Integer.parseInt(valores.get(i)));
-                    case 11: this.setAlmacen_joysticks(Integer.parseInt(valores.get(i)));
-                    case 12: this.setAlmacen_botones(Integer.parseInt(valores.get(i)));
-                    case 13: this.setAlmacen_SD(Integer.parseInt(valores.get(i)));
+                    case 10:try{
+                        this.setAlmacen_pantallas(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setAlmacen_pantallas(1);
+                    }
+                        
+                        if (this.getDuracion_dias() < 0) {
+                            JOptionPane.showMessageDialog(null, "El maximo de botones no puede ser negativo, se colocara '1' como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setAlmacen_pantallas(1);
+                        }
+                    
+                    break;
+                    
+                    
+                    
+                    
+                    case 11: try{
+                        this.setAlmacen_joysticks(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 40 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setAlmacen_joysticks(40);
+                    }
+                        
+                        if (this.getAlmacen_joysticks() < 0) {
+                            JOptionPane.showMessageDialog(null, "El almacen no puede ser negativo, colocando 40 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setAlmacen_joysticks(40);
+                        }
+                    case 12:try{
+                        this.setAlmacen_botones(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 40 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setAlmacen_botones(40);
+                    }
+                        
+                        if (this.getAlmacen_botones() < 0) {
+                            JOptionPane.showMessageDialog(null, "El almacen no puede ser negativo, colocando 40 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setAlmacen_botones(40);
+                        }
+                    case 13:try{
+                        this.setAlmacen_SD(Integer.parseInt(valores.get(i)));
+                    } catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 40 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
+                        this.setAlmacen_SD(40);
+                    }
+                        
+                        if (this.getAlmacen_SD() < 0) {
+                            JOptionPane.showMessageDialog(null, "El almacen no puede ser negativo, colocando 40 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
+                            this.setAlmacen_SD(40);
+                        }
                 }
             }
   
