@@ -85,8 +85,8 @@ public class LeerTxt {
                         }
                         
                         if(getMaximo_pantallas() < getInicial_pantallas()){
-                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
-                           this.setMaximo_pantallas((this.getInicial_pantallas() + 1));
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando el inicial como maximo", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_pantallas((this.getInicial_pantallas()));
                         }
    
                     
@@ -129,8 +129,8 @@ public class LeerTxt {
                         }
                         
                         if(getMaximo_joysticks() < getInicial_joysticks()){
-                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
-                           this.setMaximo_joysticks((this.getInicial_joysticks() + 1));
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando el inicial como maximo", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_joysticks((this.getInicial_joysticks()));
                         }
                     
                     
@@ -166,8 +166,8 @@ public class LeerTxt {
                             this.setMaximo_botones(1);
                         }
                             if(getMaximo_botones() < getInicial_botones()){
-                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
-                           this.setMaximo_botones((this.getInicial_botones() + 1));
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando el inicial como maximo", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_botones((this.getInicial_botones()));
                         }
                     
                         System.out.println("maximo botones"+getMaximo_botones());
@@ -205,8 +205,8 @@ public class LeerTxt {
                         }
                         
                         if(getMaximo_SD() < getInicial_SD()){
-                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando inicial +1 como default", "Alerta", JOptionPane.ERROR_MESSAGE);
-                           this.setMaximo_SD((this.getInicial_SD() + 1));
+                             JOptionPane.showMessageDialog(null, "El maximo no puede ser menor al inicial, colocando el inicial como maximo", "Alerta", JOptionPane.ERROR_MESSAGE);
+                           this.setMaximo_SD((this.getInicial_SD()));
                         }
                         System.out.println("maximo SD"+getMaximo_SD());
                         break;
