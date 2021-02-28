@@ -230,7 +230,7 @@ public class LeerTxt {
                         System.out.println("Cantidad dias dias"+getCantidad_dias());
                         break;
                     case 9: try{
-                        this.setDuracion_dias(Integer.parseInt(valores.get(i)));
+                        this.setDuracion_dias(Integer.parseInt(valores.get(i))*1000);
                     } catch (Exception e){
                         JOptionPane.showMessageDialog(null, "No se puede ingresar una letra, colocando 1 como predeterminado", "Alerta", JOptionPane.ERROR_MESSAGE);
                         this.setDuracion_dias(1000);
